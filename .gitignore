@@ -1,0 +1,7 @@
+/build/
+*.aux
+*.log
+*.out
+*.toc
+*.brf
+/papers/src/main.pdf

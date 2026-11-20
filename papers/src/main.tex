@@ -1,0 +1,896 @@
+% Revised November 20, 2026.
+\documentclass[11pt]{amsart}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amssymb,mathtools,microtype}
+\usepackage{etoolbox,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=green!35!black,
+  urlcolor=blue!55!black,pagebackref=true]{hyperref}
+\hypersetup{pdftitle={Regularization of plurisubharmonic exhaustions on complex surfaces},
+  pdfauthor={Zhijian Chen and Bo Xiao},
+  pdfsubject={A proposed proof for smooth and normal complex surfaces}}
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifnum#1>0\relax\ensuremath{\uparrow}\,#2\fi}
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreftwosep}{, }
+\renewcommand*{\backreflastsep}{, }
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\numberwithin{equation}{section}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\ddc}{dd^c}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\osc}{osc}
+\title[Regularization of plurisubharmonic exhaustions]{Regularization of
+plurisubharmonic exhaustions on complex surfaces}
+\author{Zhijian Chen}
+\address{Institute of Mathematics, Academy of Mathematics and Systems Science, Chinese Academy of Sciences, Beijing 100190, China}
+\email{chenzhijian@amss.ac.cn}
+\author{Bo Xiao}
+\address{School of Mathematical Sciences, University of Chinese Academy of Sciences, Beijing, China}
+\email{xb1994@amss.ac.cn}
+\date{November 20, 2026}
+\subjclass[2020]{Primary 32U10; Secondary 32T35, 32U25, 32U40}
+\keywords{Plurisubharmonic exhaustion, weak completeness, complex surface,
+Hermitian metric, Lelong number, Levi-flat hypersurface}
+
+\setcounter{tocdepth}{1}
+\makeatletter
+\patchcmd{\@starttoc}{\addvspace{32\p@\@plus14\p@}}{}{}%
+  {\PackageError{surface-regularization}{Cannot adjust contents spacing}{}}
+\makeatother
+
+\begin{document}
+\begin{abstract}
+We give an intrinsic argument for smooth regularization on a complex
+surface carrying a continuous plurisubharmonic exhaustion. Outside the
+case of a modification of a Stein space, the intrinsic version of
+the level average from our companion paper produces a nonzero compactly supported current of
+uniformly vanishing two-dimensional density. A Hermitian heat operator
+and a scalar Dirichlet problem realize this current as the complex Hessian
+of a negative potential on arbitrarily large sublevels, with boundary value
+zero. Regular levels of those potentials give Levi-flat boundaries. A
+second Dirichlet problem and a surface intersection identity give a
+smooth global exhaustion. Choosing the boundary levels away from
+exceptional fibers extends the conclusion to normal complex surfaces.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+\section{Introduction and main results}
+
+In 1980 S.~Nakano asked whether every complex manifold admitting a
+continuous plurisubharmonic (psh) exhaustion admits a smooth one
+\cite[\S I.1, Problem~1, p.~162]{Nakano}. In the companion paper
+\cite[Theorems~1.1 and 1.3]{CX} we construct a smooth quasi-projective
+threefold with a locally Lipschitz psh exhaustion and no $C^1$ psh
+exhaustion, and prove a positive result for divisor complements in normal
+compact K\"ahler surfaces. We consider the surface question without a
+compactification or a K\"ahler metric.
+
+\begin{theorem}\label{thm:main}
+Let \(X\) be a connected smooth complex manifold of complex dimension two.
+If \(X\) admits a continuous real-valued plurisubharmonic exhaustion,
+then \(X\) admits a \(C^\infty\) plurisubharmonic exhaustion.
+\end{theorem}
+
+We use exhaustion in the sense that all finite sublevels are relatively
+compact. If the continuous input takes the extended value \(-\infty\),
+replace it by \(\max(\rho,0)\) to obtain the real-valued hypothesis.
+We write \(d^c=\tfrac i2(\bar\partial-\partial)\),
+\(\D=dd^c=i\partial\bar\partial\). A Hermitian form \(\omega\) is fixed
+on \(X\), \(dV=\omega^2/2\), and \(L=\Lambda_\omega\D\) has the sign of
+the usual sum of second derivatives. The metric may have torsion.
+In real dimension four, a real \((1,1)\)-form \(B\) with
+\(\Lambda_\omega B=0\) satisfies \(B\wedge B=-|B|_\omega^2dV\).
+This identity enters twice, first in recovering the current from a scalar
+potential, and then in showing that harmonic functions between Levi-flat
+boundaries are pluriharmonic.
+
+The output is a new exhaustion. Since every connected noncompact Riemann
+surface is Stein, Theorem~\ref{thm:main} and the threefold in \cite{CX}
+put the smallest dimension of a smooth counterexample at three.
+Corollary~\ref{cor:normal} treats normal surface singularities.
+The nonnormal example in \cite[Proposition~5.7]{CX} shows
+where that extension stops.
+
+Several positive cases were known. For an irreducible noncompact
+surface with a continuous psh exhaustion and a nonconstant global
+holomorphic function, Tomassini and V\^aj\^aitu \cite{TV} prove
+holomorphic convexity, giving a smooth psh exhaustion by pullback
+from the Stein reduction. This extends Ohsawa's smooth case
+\cite[Proposition~1.4]{Ohsawa}. V\^{\i}j\^{\i}itu
+\cite[Theorem~1.1]{Vij} allows an arbitrary psh exhaustion in this
+criterion. Mongodi and S{\l}odkowski \cite[Corollary~4.5]{MS} obtain
+a real-analytic psh exhaustion for a continuously exhausted domain
+in a surface already carrying a real-analytic psh exhaustion.
+
+The proof starts with the level averaging of our companion paper
+\cite[Lemma~5.3]{CX} in the intrinsic form of the October~29 project
+note \cite[Proposition~2.1]{Oct}. That note also develops a heat
+estimate on complete K\"ahler surfaces of bounded curvature and a
+Green-potential construction under additional hypotheses at infinity.
+Here a local Hermitian heat operator supplies an almost positive
+representative with small $dd^c$ error (Lemma~\ref{lem:heat}).
+On smooth outer approximations to a continuous sublevel, we control
+the boundary term in the trace-correction argument of Buchdahl
+\cite[\S2]{Buchdahl}. This produces a potential with prescribed
+boundary limit (Lemma~\ref{lem:dirichlet}). We then apply the
+boundary identity used by Weber \cite{Weber} to the Hermitian trace
+equation on overlapping annuli and glue their pluriharmonic solutions.
+
+\subsection*{Acknowledgement and AI disclosure}
+OpenAI Codex developed and drafted the proposed Hermitian and Dirichlet
+arguments in this paper and carried out the subsequent internal proof and
+attribution review. The October~29 research note is cited under its
+recorded title and byline. Independent mathematical review of this
+preprint is pending.
+
+\section{A current on a compact band of levels}
+
+\begin{lemma}\label{lem:shell}
+Suppose that \(X\) is noncompact, that \(\rho\) is a continuous psh
+exhaustion, and that \(X\) is not a modification of a Stein space. There
+exists a nonzero positive \((1,1)\)-current \(T\) of compact support
+with \(\D T=0\). Its trace measure \(\mu=T\wedge\omega\) satisfies
+\[
+ \lim_{r\downarrow0}\sup_{x\in X}\frac{\mu(B(x,r))}{r^2}=0 .
+\]
+Here balls can be taken in the fixed smooth Hermitian metric.
+\end{lemma}
+\begin{proof}
+We include the intrinsic proof of \cite[Proposition~2.1]{Oct}, based
+on \cite[Lemma~5.3]{CX}, since its uniform density estimate is needed
+below. The separation argument belongs to the theory of Levi currents
+of Sibony \cite{Sibony} and of minimal kernels introduced by
+S{\l}odkowski and Tomassini \cite{ST}. For compact local maximum sets
+and Levi currents see Bianchi and Mongodi
+\cite[Theorem~1.1 and Lemma~2.8]{BM}. Let \(\Sigma\) be the
+locus where every continuous psh exhaustion fails to be strictly psh on a
+neighborhood. By \cite[Lemma 2.1]{MS}, some half-line \((t_0,\infty)\)
+lies in \(\rho(\Sigma)\). For each \(s>t_0\) there is no smooth strictly
+psh function on a neighborhood of the entire compact level \(K_s=\{\rho=s\}\).
+Indeed, normalize such a function \(v\) to take values in \((0,1)\) on
+a compact band \(|\rho-s|\leq\delta\). Put \(g(t)=t+\tfrac12|t-s|\).
+Use \(\max(g(\rho),\rho+\epsilon v)\) on the band and \(g(\rho)\)
+elsewhere, with \(0<\epsilon<\delta/4\). The resulting continuous psh
+exhaustion is strictly psh near \(K_s\), contradicting \(K_s\cap\Sigma\ne
+\varnothing\).
+
+In the space of continuous real \((1,1)\)-forms on \(K_s\), separate
+the open positive-definite cone from
+\(\{(\D f)|_{K_s}: f\in C_c^\infty(X,\R)\}\) by Hahn--Banach.
+The separating functional annihilates the subspace and is positive on
+nonnegative forms. Its value on \(\omega\) is strictly positive, since
+all forms on the compact level are bounded above and below by multiples
+of \(\omega\). Normalizing gives a positive current \(T_s\) of mass one,
+supported on \(K_s\), with \(\D T_s=0\).
+
+Fix \(t_0<a<b\). For each \(n\), average the \(T_s\) at the \(n\)
+midpoints of a uniform partition of \([a,b]\), and pass to a weak
+subsequence. The limit \(T\) has mass one, is supported in the compact
+band \(\{a\leq\rho\leq b\}\), and satisfies \(\D T=0\). On a relatively
+compact coordinate ball write \(\beta=\D|z|^2\). For centers in a
+smaller ball, Skoda's local Lelong--Jensen monotonicity at a fixed
+larger radius \cite[Proposition~1]{Skoda}, in the form recorded in
+\cite[Appendix B, (B.1)--(B.2)]{DNS}, gives
+\(\int_{B(x,r)}T_s\wedge\beta\leq C r^2\) uniformly in \(x,s\).
+Only those midpoints in the range of \(\rho\) on \(B(x,r)\) can
+contribute. Their proportion is at most
+\(\osc_{B(x,r)}\rho/(b-a)+2/n\). Passing to the weak limit on the open
+ball gives
+\[
+  \int_{B(x,r)}T\wedge\beta
+  \leq \frac{Cr^2}{b-a}\osc_{B(x,r)}\rho .
+\]
+Uniform continuity on a compact neighborhood of the band, finitely many
+smaller coordinate balls, and comparison of metrics give the assertion.
+\end{proof}
+
+\section{Smoothing a current with a Hermitian metric}
+
+The density and Gaussian estimates below come from
+\cite[Proposition~4.1]{Oct}, which uses K\"ahler heat flow.
+Ni and Tam \cite{NiTam} use the Hodge heat equation to construct
+Poincar\'e--Lelong potentials on complete K\"ahler manifolds.
+For regularization of positive $dd^c$-closed currents by differences
+of smooth positive $dd^c$-closed forms on a compact K\"ahler manifold,
+see Dinh and Sibony \cite[Theorem~4.1]{DS}. Here support in a
+prescribed neighborhood and a uniform lower bound for the approximating
+forms must hold simultaneously.
+
+\begin{lemma}\label{lem:heat}
+Let \(T\) be a positive \((1,1)\)-current on a complex surface, with
+\(\D T=0\), compact support \(K\), and zero Lelong numbers everywhere.
+Fix a smooth Hermitian form \(\omega\) near \(K\). In any prescribed
+relatively compact neighborhood of \(K\) there is a compact set
+\(F\) supporting real smooth \((1,1)\)-forms \(A_t\), \(0<t<1\),
+with
+\[
+ A_t\longrightarrow T,\qquad
+ \sup_{0<t<1}\|A_t\|_{L^1}<\infty,\qquad
+ \|\D A_t\|_{C^k}=O_{k,N}(t^N),\qquad
+ \liminf_{t\downarrow0}\int A_t\wedge A_t\geq0.
+\]
+Here \(k,N\) are arbitrary nonnegative integers, the first
+convergence is in currents, and the error estimates are as \(t\downarrow0\).
+In fact \(A_t\geq-\eta_t\omega\) on \(F\) for some \(\eta_t\to0\).
+\end{lemma}
+
+\begin{proof}
+Write \(L f=g^{i\bar j}\partial_i\partial_{\bar j}f\), the complex
+trace of \(\D f\) for \(\omega\). We construct a real operator \(P\)
+on Hermitian \((1,1)\)-forms satisfying \(P\D=\D L\).
+In a holomorphic chart write \(U=iU_{k\bar l}\,dz^k\wedge d\bar z^l\).
+Set
+\begin{align*}
+ (P_{\rm loc}U)_{k\bar l}
+ ={}& L U_{k\bar l}
+ +(\partial_k g^{i\bar j})\,\partial_{\bar j}U_{i\bar l}
+ +(\partial_{\bar l}g^{i\bar j})\,\partial_iU_{k\bar j}\\
+ &+(\partial_k\partial_{\bar l}g^{i\bar j})U_{i\bar j}.
+\end{align*}
+Substitution of \(U_{k\bar l}=\partial_k\partial_{\bar l}f\)
+verifies the identity. Transport these local operators as operators
+on the bundle and take a smooth partition-of-unity weighted sum.
+This gives \(P\D=\D L\) on a neighborhood of \(K\), with scalar
+principal symbol equal to that of \(L\).
+
+The connection of this Laplace-type operator preserves the cone of
+positive Hermitian forms under parallel transport. Indeed, in the
+displayed chart the coefficient of each real first derivative in
+\(P_{\rm loc}-L\) acts on a Hermitian matrix by
+\(U\mapsto B U+ U B^*\). Indeed set
+\((M_j)_k{}^i=\partial_k g^{i\bar j}\) and write \(z^j=x^j+iy^j\).
+The coefficients of \(\partial_{x^j}\) and \(\partial_{y^j}\) are,
+respectively,
+\[
+ U\longmapsto (M_jU+UM_j^*)/2,\qquad
+ U\longmapsto \big((iM_j)U+U(iM_j)^*\big)/2 .
+\]
+Such endomorphisms form the Lie algebra of the congruence action.
+An additional real scalar drift also has this form. Changing the
+holomorphic frame acts by congruence, whose logarithmic derivative
+belongs to the same Lie algebra. The construction of the connection
+of a scalar-symbol Laplace-type operator multiplies these first-order
+coefficients by the inverse principal symbol and a real scalar and
+adds scalar multiples of the identity. Thus the connection matrices
+remain in this Lie algebra, also after the weighted sum. Parallel
+transport has the form \(U\mapsto H U H^*\), with \(H\) invertible.
+
+For the heat construction, choose a relatively compact open set with
+smooth boundary containing \(K\) in the given neighborhood. A finite
+union of components is allowed. Double its closure as a
+smooth manifold. Double a smooth vector bundle extending the
+\((1,1)\)-bundle on this domain, using a collar trivialization in the
+normal direction to the boundary. On the closed double extend the
+principal metric, the bundle connection and the zeroth-order
+endomorphism, keeping \(P,L\) and the real bundle on a fixed smaller
+neighborhood of \(K\). This extension is only a smooth elliptic
+construction. Let \(B_t=(e^{tP})'T\), the distributional transpose
+on dual bundle densities. In the smaller neighborhood identify such
+densities with \((1,1)\)-forms by the wedge pairing. In complex
+dimension two the positive cone is its own dual for this pairing:
+testing a Hermitian matrix against the rank-one positive forms tests
+its value in all complementary complex directions.
+
+We record the estimates used for this heat operator. On the closed
+double, the heat parametrix of a Laplace-type operator, including an
+operator with nonmetric connection, has leading kernel equal to
+\((4\pi t)^{-2}\exp[-d(x,y)^2/(4t)]\) times parallel transport and a
+smooth positive density factor. Here \(d\) is the metric distance
+of its real principal symbol. The next terms are this Gaussian
+times positive powers of \(t\) with smooth bounded bundle
+coefficients on a fixed neighborhood of the diagonal. A smooth
+cutoff with values in \([0,1]\) localizes this expansion. By
+increasing its truncation order, the remainder is \(O(t^N)\) in
+any prescribed \(C^k\) norm on the double. These are the
+parametrix and remainder in \cite[Theorem~2.30]{BGV}. See also
+\cite[Theorem~3.1]{Ludewig} for the near-diagonal
+estimate for a general Laplace-type operator on a compact manifold.
+In particular, \(B_t\) and its derivatives are \(O(t^N)\) on every
+closed set separated from \(K\), for every \(N\).
+
+Choose a nonnegative cutoff \(\chi\leq1\) equal to one near \(K\)
+and supported in the unchanged neighborhood, and put
+\(A_t=\chi B_t\), extended by zero. We check the error in
+\(\D A_t\). On this neighborhood transposition of \(P\D=\D L\)
+gives \(\D P'B=L'\D B\), where \(L'\) acts on scalar densities.
+Consequently the compactly supported scalar density
+\(r_t=\D(\chi B_t)\), viewed on the double, satisfies
+\[
+    (\partial_t-L')r_t=e_t,\qquad r_{0}=0.
+\]
+Indeed \(e_t=\D[\chi,P']B_t\), with the commutator
+\([\chi,P']=\chi P'-P'\chi\). All its terms are supported where derivatives of
+\(\chi\) are nonzero and contain only finitely many derivatives of
+\(B_t\). The off-diagonal estimate gives
+\(\|e_t\|_{C^k}=O_{k,N}(t^N)\); the initial datum is zero in
+distributions because \(\D T=0\). Duhamel's formula implies the
+same estimate for \(r_t\). To justify the zero initial term, first
+start the formula at \(s>0\). For fixed \(t>0\),
+\(e^{(t-s)L'}r_s\to0\) distributionally as \(s\downarrow0\),
+by weak convergence of \(r_s\) and smooth convergence of the heat
+operator on test functions at positive time. On the closed double the
+scalar heat semigroup is bounded over \(0\leq t\leq1\) on each
+fixed Sobolev space; apply the formula in sufficiently high Sobolev
+order and then use Sobolev embedding. The heat approximation to
+the identity also gives \(A_t\to T\).
+
+Let \(\mu=T\wedge\omega\). Its total mass controls the variation of
+all coefficients of \(T\). For some fixed \(C>0\) set
+\[
+ q_t(x)=t^{-2}\int_K \exp[-d(x,y)^2/(Ct)]\,d\mu(y).
+\]
+In the parametrix choose the diagonal neighborhood small enough
+that geodesics with one endpoint in \(K\) lie in the unchanged
+neighborhood. The transposed leading coefficient preserves positivity
+by cone duality. The remaining finite list of coefficients is
+bounded in norm by \(Ct\) times the Gaussian there. Thus
+\[
+       A_t=H_t+E_t,\qquad H_t\geq0,\qquad
+       |H_t|\leq Cq_t,\qquad |E_t|\leq Ctq_t+O(t^2)
+\]
+on the fixed compact support, where \(H_t\) denotes the transposed
+leading term times \(\chi\). In particular \(\|A_t\|_1\) is
+uniformly bounded since \(\|q_t\|_1\leq C\mu(K)\).
+
+For clarity, the Lelong assumption gives the uniform estimate
+\[
+   \sup_x\mu(B(x,r))=o(r^2).
+\]
+Here one may restrict centers to a fixed compact neighborhood of \(K\).
+In each holomorphic coordinate ball the Euclidean trace mass
+divided by \(r^2\) is nondecreasing with \(r\), by the local
+Lelong--Jensen formula for positive \(\D\)-closed currents.
+If the uniform assertion failed, there would be centers \(x_j\to x\)
+and radii \(r_j\downarrow0\) with normalized Euclidean mass
+bounded below. For every fixed sufficiently small \(s>0\),
+monotonicity at \(x_j\) gives mass \(\geq c s^2\) in \(B(x_j,s)\);
+this ball lies in \(B(x,2s)\) for large \(j\).
+This contradicts \(\nu(T,x)=0\). A finite atlas and local uniform
+comparability give the assertion in the chosen metric.
+For a direct estimate set \(m(r)=\sup_x\mu(B(x,r))/r^2\).
+This function tends to zero at zero and is bounded for all \(r>0\)
+by compactness of the support and finiteness of the mass. Splitting
+the Gaussian into the ball of radius \(\sqrt t\) and dyadic annuli gives
+\[
+ t\|q_t\|_\infty\le m(\sqrt t)+
+ \sum_{k\ge0}4^{k+1}e^{-4^k/C}m(2^{k+1}\sqrt t)\longrightarrow0
+\]
+by dominated convergence. In particular
+\(\|E_t\|_\infty=o(1)\), and the positivity of the transported
+leading term yields \(A_t\geq-\eta_t\omega\) on \(F\) with
+\(\eta_t\to0\). Integrating the pointwise inequality
+\((A_t+\eta_t\omega)^2\geq0\) over \(F\) gives
+\[
+   \int_X A_t^2\ \geq\
+   -2\eta_t\int_F A_t\wedge\omega-\eta_t^2\int_F\omega^2
+   \ \geq\ -C\eta_t-C\eta_t^2 .
+\]
+Only the leading transport was required to preserve positivity.
+\end{proof}
+
+\section{A Dirichlet potential on continuous sublevels}
+
+\begin{lemma}\label{lem:almost}
+On a neighborhood of any fixed compact set, a continuous psh function
+\(\rho\) has smooth approximations \(r_\epsilon\) converging uniformly
+and satisfying \(\D r_\epsilon\geq-\epsilon\omega\).
+\end{lemma}
+\begin{proof}
+Apply B{\l}ocki and Ko{\l}odziej \cite[Theorem~2]{BK} with
+\(\gamma=0\) on a relatively compact open neighborhood of the given
+set. The continuous \(\rho\) is locally bounded and has zero Lelong
+numbers. Their smooth approximants decrease to \(\rho\) with Hessians
+bounded below by \(-\epsilon_j\omega\), where \(\epsilon_j\downarrow0\).
+Dini's theorem gives uniform convergence on a smaller compact
+neighborhood. For the continuous case the same approximation with a
+strictly negative Levi lower bound follows from Greene and Wu
+\cite[\S4, Theorem~4.1 and Corollary~2]{GW}.
+\end{proof}
+
+\begin{lemma}[A Dirichlet potential on an exhaustion sublevel]\label{lem:dirichlet}
+Let $(X,\omega)$ be a connected noncompact Hermitian surface with a continuous psh
+exhaustion $\rho$. Let $U$ be a connected component of $\{\rho<c\}$,
+and let $K\Subset U$ be compact. Suppose $T\ne0$ is a positive
+$(1,1)$-current supported in $K$. Assume there are smooth real
+$(1,1)$-forms $A_t$ supported in a fixed compact subset $K'\Subset U$,
+converging to $T$ as currents as $t\downarrow0$, such that
+\[
+ \sup_{0<t<t_0}\|A_t\|_{L^1}<\infty,\qquad
+ \|\D A_t\|_{C^0}\longrightarrow0,\qquad
+ \liminf_{t\downarrow0}\int_X A_t\wedge A_t\ge0 .
+\]
+There is a psh function $F:U\to[-\infty,0)$ with $\D F=T$.
+It is finite and smooth pluriharmonic on $U\setminus K$.
+It tends uniformly to zero at $\partial U$.
+\end{lemma}
+
+\begin{proof}
+The October~29 note \cite[Theorem~9.1 and Corollary~9.5]{Oct}
+uses a global Green potential assuming completeness, infinite volume,
+bounded K\"ahler curvature and decay of the positive Green kernel at
+infinity. The discussion in \cite[\S9]{Oct}, drawing on Napier and
+Ramachandran \cite[proof of Theorem~2.5]{NR}, already points to
+hyperbolic sublevels and asks how their local separators can be made
+compatible. We solve on relatively compact domains. The extra term to
+estimate is the boundary integral of the square of the complex Hessian.
+We use the boundary identity in Weber's K\"ahler argument
+\cite[Lemmas~2.1--2.2]{Weber} for the complex trace of a Hermitian metric.
+
+We use $d^c=\tfrac{i}{2}(\bar\partial-\partial)$, so
+$dd^c=\D$. Set $L=\Lambda_\omega\D$ and $dV=\omega^2/2$.
+This real scalar operator is elliptic with smooth coefficients and
+zero zeroth-order term. Choose a relatively compact, connected,
+smoothly bounded domain $W$ containing $\{\rho\le c+1\}$.
+Increasing $W$ slightly if needed, fix a compact neighborhood $H$
+of $\{\rho\le c+1/2\}$ in $W$. All the level surfaces used below
+lie in the interior of $H$.
+
+By Lemma~\ref{lem:almost}, on a neighborhood of $\overline W$ there
+are smooth functions $s_j$ such that $s_j\to\rho$ uniformly on
+$\overline W$ and $\D s_j\ge-\delta_j\omega$, where
+$\delta_j\downarrow0$. Solve $Lp=1$ on $W$, with zero boundary
+data; the classical Dirichlet theorem gives
+$p\in C^\infty(\overline W)$. For $r_j=s_j+2\delta_jp$ we have
+$Lr_j\ge0$, because $\Lambda_\omega\omega=2$. There is a sequence
+$\epsilon_j>0$ tending to zero for which
+\[
+ \|r_j-\rho\|_{C^0(\overline W)}\le\epsilon_j,\qquad
+ \D r_j\ge-\epsilon_j\omega\quad\hbox{on }\overline W.
+\]
+On $H$ we have a uniform energy bound
+$\int_H |dr_j|^2\,dV\le C$. Indeed, take a nonnegative cutoff
+$\eta\in C_c^\infty(W)$ equal to one on $H$, and a fixed $B$ making
+$r_j+B>0$ on $W$. The product rule and ellipticity give
+$L(r_j+B)^2\ge C_0|dr_j|^2$ on $\supp\eta$, with $C_0>0$.
+The integral of $\eta L(r_j+B)^2$ is uniformly bounded by integration
+against $L^*\eta$.
+
+Write $h_j=\sqrt{\epsilon_j}$. By the coarea formula and Sard's
+theorem, there is a regular value $c_j\in(c+h_j,c+2h_j)$ such that
+\begin{equation}\label{eq:dirichlet-flux}
+ \int_{\{r_j=c_j\}\cap W}|dr_j|\,d\sigma\le C/h_j .
+\end{equation}
+Here $d\sigma$ and the gradient are for the Riemannian metric of
+$\omega$. Indeed the coarea integral over this interval is bounded
+by the energy on $H$ for all large $j$. Since $\rho>c+1$ on
+$\partial W$, these levels are compactly contained in $W$.
+For all large $j$, $U\subset\{r_j<c_j\}\cap W$. Denote by $V_j$
+the component of this smooth sublevel containing $U$. Its closure
+is contained in the fixed compact set $H$.
+
+Choose any sequence $t_j\downarrow0$ and abbreviate $A_j=A_{t_j}$.
+On $V_j$ solve the smooth classical Dirichlet problem
+\[
+ Lu_j=\Lambda_\omega A_j,\qquad u_j|_{\partial V_j}=0.
+\]
+The solutions satisfy
+\begin{equation}\label{eq:dirichlet-Green-bounds}
+ \int_{V_j}|u_j|\,dV\le C,\qquad
+ \sup_{V_j\cap H'}|u_j|\le C(H')
+ \quad\text{for each compact }H'\subset H\setminus K'.
+\end{equation}
+For clarity, the constants are independent of the varying domains.
+Use the positive Dirichlet Green kernel $G_W(x,y)$ of $-L$ on the
+fixed smooth $W$, relative to $dV(y)$. The maximum principle gives
+\[
+ |u_j(x)|\le\int_{K'} G_W(x,y)|\Lambda_\omega A_j(y)|\,dV(y).
+\]
+The kernel is smooth off the diagonal, hence bounded on disjoint
+compact sets. To bound its integral in the first variable, take
+$0\leq\eta\in C_c^\infty(W)$ equal to one on $H$. The transpose of
+the Dirichlet inverse of $-L$ applied to $\eta$ is smooth in the
+interior by elliptic regularity. Its value at $y$ bounds
+$\int_H G_W(x,y)\,dV(x)$ from above, uniformly for $y\in K'$.
+This argument also allows the first-order drift of the Hermitian
+operator. The uniform $L^1$ bound on $A_j$ proves
+\eqref{eq:dirichlet-Green-bounds}.
+
+Fix $d>0$ so small that $\rho<c-3d$ on $K\cup K'$.
+Both $u_j$ and $-u_j$ are $L$-harmonic on the collar
+$V_j\cap\{c-d<r_j<c_j\}$. On its inner boundary their absolute
+values are bounded independently of $j$ by
+\eqref{eq:dirichlet-Green-bounds}. The function $C(r_j-c_j)$ is
+$L$-subharmonic. Comparison on the collar, taking $C$ large enough,
+therefore yields
+\begin{equation}\label{eq:dirichlet-collar-bound}
+ |u_j|\le C(c_j-r_j) \quad\text{on }V_j\cap\{r_j>c-d\}.
+\end{equation}
+The inner level need not be regular for this maximum-principle
+argument. At $\partial V_j$ write $du_j=b_j\,dr_j$.
+The one-sided derivative of \eqref{eq:dirichlet-collar-bound} in an
+inward transverse direction gives $|b_j|\le C$.
+
+Following the trace correction of Buchdahl
+\cite[\S2, especially Lemma~4]{Buchdahl} and its complete K\"ahler
+counterpart \cite[Theorem~3.3 and Lemma~4.2]{Oct}, the smooth residual
+$B_j=A_j-\D u_j$ is primitive on $V_j$, so
+$B_j^2=-|B_j|_\omega^2dV$. Stokes' theorem gives
+\[
+ \int_{V_j}(\D u_j)^2
+   =\int_{\partial V_j} d^cu_j\wedge\D u_j
+   =\int_{\partial V_j}b_j^2 d^c r_j\wedge\D r_j.
+\]
+For the second equality, pull $d^cu_j=b_jd^c r_j$ back to
+$\partial V_j$ and differentiate there. With the boundary oriented
+outwards, $d^c r_j\wedge\omega$ restricts to a nonnegative volume
+form bounded by $C|dr_j|\,d\sigma$. Only the complex tangential
+Levi form enters $d^c r_j\wedge\D r_j$, whence
+\[
+ \int_{V_j}(\D u_j)^2
+   \ge -C\epsilon_j \int_{\partial V_j}|dr_j|\,d\sigma
+   \ge -C\sqrt{\epsilon_j}.
+\]
+Since $A_j$ is supported in $K'\Subset V_j$, integration by parts
+has no boundary contribution in the cross term:
+\[
+ \bigg|\int_{V_j} A_j\wedge\D u_j\bigg|
+   =\bigg|\int_{V_j} u_j\D A_j\bigg|
+   \le C\|\D A_j\|_{C^0}\longrightarrow0 .
+\]
+The sign of each estimate now enters through the identity
+\[
+ 0\leq\int_{V_j}|A_j-\D u_j|_\omega^2\,dV
+ =-\int_X A_j^2+2\int_{V_j}u_j\D A_j-\int_{V_j}(\D u_j)^2 .
+\]
+The right side has nonpositive upper limit, proving strong convergence
+of the residual to zero in $L^2(V_j)$.
+
+By \eqref{eq:dirichlet-Green-bounds} a subsequence of $u_jdV$
+converges weakly as measures on $U$. Regard its limit as a scalar
+distribution $F$ via the fixed volume $dV$. The $L^2$ estimate and
+the convergence $A_j\to T$ give $\D F=T$ on $U$. The distribution
+has a psh representative. On $U\setminus K$ it is smooth by
+elliptic regularity for $L$, and is pluriharmonic there.
+Test both inequalities in \eqref{eq:dirichlet-collar-bound} against
+nonnegative smooth compactly supported functions on
+$U\cap\{\rho>c-d/2\}$. Uniform convergence of $r_j$ and weak convergence
+of $u_j\,dV$ give $|F|\le C(c-\rho)$ almost everywhere there.
+Both sides are continuous on this collar, giving the pointwise estimate.
+Every boundary point of the component $U$ has $\rho=c$, so the
+convergence to zero is uniform at $\partial U$. The psh maximum
+principle gives $F\le0$ on $U$. An interior value zero would make
+$F$ constant on the connected set $U$, contrary to $\D F=T\ne0$.
+\end{proof}
+
+\section{Exhaustion by Levi-flat boundaries}
+
+\begin{lemma}[Gluing pluriharmonic collars on a surface]\label{lem:annuli}
+Let $X$ be a connected noncompact complex surface. Suppose that every
+compact subset of $X$ is contained in a relatively compact connected
+domain with smooth boundary. Suppose each boundary component has a
+single pluriharmonic defining function on a full two-sided neighborhood
+of that component, with nonvanishing differential there.
+Then $X$ admits a smooth plurisubharmonic exhaustion.
+\end{lemma}
+
+\begin{proof}
+First fill the relatively compact complementary components of each such
+domain $W$. More precisely, adjoin to $\overline W$ all relatively
+compact components of $X\setminus\overline W$ and take the interior.
+The compact smooth hypersurface $\partial W$ has finitely many connected
+components. Its exterior collar along any one of them is connected, and
+every component of $X\setminus\overline W$ meets such a collar. Thus
+only finitely many components are filled. The result is a relatively
+compact connected smooth domain, its boundary consists of components of
+$\partial W$, and every component of the complement of its closure is
+not relatively compact in $X$. Recursively applying the hypothesis to
+compact sets containing the previous filled closure and a cofinal
+sequence of compact sets gives an exhaustion by filled domains $U_n$,
+$n\geq 1$, with $\overline U_n\subset U_{n+1}$.
+
+Write $S_n=\partial U_n$. On a collar of $S_n$ take a defining
+function $r_n$ as in the hypothesis, choosing its sign on each component
+so that it increases outwards. Choose disjoint collars and sufficiently
+small $\epsilon_n>0$. Moving $S_n$ to the levels
+$S_n^-=\{r_n=-\epsilon_n\}$ and $S_n^+=\{r_n=\epsilon_n\}$ within
+its collar gives domains $U_n^-$ and $U_n^+$, respectively, with
+\[
+ \overline U_n^-\subset U_n\subset\overline U_n\subset U_n^+,
+ \qquad \overline U_n^+\subset U_{n+1}^-.
+\]
+These small collar moves are ambient isotopies supported in relatively
+compact sets. Hence the perturbed domains are connected and
+$X\setminus\overline{U_n^\pm}$ has no
+relatively compact components. The perturbed boundaries are Levi-flat
+because they are regular levels of a pluriharmonic function.
+
+On $A_n=U_{n+1}^+\setminus\overline U_n^-$ solve the scalar Dirichlet
+problem
+\[
+ \operatorname{tr}_{g}(\D h_n)=0,\qquad
+ h_n|_{S_n^-}=0,\qquad h_n|_{S_{n+1}^+}=1,
+\]
+using any smooth Hermitian metric $g$ and $\D=i\partial\bar\partial$.
+Each component of $A_n$ meets both boundary sets in its closure. It
+meets the inner boundary by connectivity of $U_{n+1}^+$, as one sees by
+joining a point of the component to $U_n^-$ inside $U_{n+1}^+$.
+If its closure missed the outer boundary, it would be a relatively
+compact component of $X\setminus\overline U_n^-$, which was excluded
+above. Classical elliptic Dirichlet theory and the strong maximum
+principle give a solution smooth up to the boundary and $0<h_n<1$ in
+$A_n$.
+
+We use Weber's harmonic separator argument
+\cite[Propositions~1.1 and 3.2]{WeberEarly},
+\cite[Lemma~1.1 and its proof]{Weber}. In the K\"ahler case one uses
+ordinary harmonic functions. For a general Hermitian metric the
+Dirichlet operator chosen above ensures directly that $\D h_n$
+has trace zero. Its two eigenvalues are therefore
+opposites, so $(\D h_n)^2$ is nonpositive and vanishes only where
+$\D h_n=0$. Use $d^c=\frac{i}{2}(\bar\partial-\partial)$, so that
+$dd^c=\D$. On each boundary component $h_n$ is constant, and its Levi
+form on the complex tangent line is its normal derivative times the
+Levi form of a local defining function, up to the normalization of the
+normal. Thus it vanishes on that line. Since $d^ch_n$ annihilates the
+same real two-plane, $d^ch_n\wedge\D h_n$ restricts to zero on
+$\partial A_n$. Stokes' theorem gives
+\[
+ \int_{A_n}(\D h_n)^2=\int_{\partial A_n}d^ch_n\wedge\D h_n=0.
+\]
+It follows that $h_n$ is pluriharmonic on $A_n$.
+
+The overlapping collars permit gluing using only comparisons of values.
+Set $F_0=0$ on $U_1^+$ and $b_1=-1$. Recursively put
+\[
+ F_n=b_n+a_n h_n,\qquad
+ m_n=\min_{S_{n+1}^-}h_n>0,\qquad
+ b_{n+1}=b_n+\tfrac12 a_n m_n.
+\]
+Choose $a_n>0$ large enough that $a_nm_n/2\geq1$ and
+$F_n>F_{n-1}$ on $S_n^+$. The second requirement is possible since
+$\min_{S_n^+}h_n>0$ and $F_{n-1}$ is already defined up to $S_n^+$.
+On $S_{n+1}^-$ the opposite comparison at the next transition follows
+from
+\[
+ F_n\geq b_n+a_nm_n>b_{n+1}=F_{n+1}.
+\]
+At the initial inner boundary $F_0=0>b_1=F_1$. On the overlap
+$U_n^+\setminus\overline U_n^-$ use a smooth convex regularized
+maximum of $F_{n-1}$ and $F_n$, nondecreasing in both variables.
+Compactness and the two strict boundary comparisons allow its smoothing
+parameter to be chosen so that it equals $F_{n-1}$ near $S_n^-$ and
+$F_n$ near $S_n^+$. It can also be chosen to dominate the ordinary
+maximum. This is the regularized-maximum gluing used in psh smoothing
+(see \cite{Richberg} and \cite[\S1]{BK}). Use the corresponding single function off the overlaps. The
+result is smooth and plurisubharmonic. Since $F_n\geq b_n$ and
+$b_{n+1}\geq b_n+1$, it tends to infinity off compact sets.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+A constant suffices when \(X\) is compact. If \(X\) is a modification of
+a Stein space, pull back a smooth strictly psh exhaustion of that space
+by the proper modification. In all other cases fix \(T\) from
+Lemma~\ref{lem:shell}.
+
+To see cofinality explicitly, place any prescribed compact set and a
+neighborhood of \(\supp T\) inside a compact connected set \(H\). Such a
+set can be obtained by covering the compact sets with finitely many
+relatively compact coordinate balls and joining them by paths. Choose
+\(c>\max_H\rho\) and take the component of \(\{\rho<c\}\) containing
+\(H\). Inside this component choose a relatively compact open
+neighborhood of \(\supp T\) and apply Lemma~\ref{lem:heat} there.
+The forms it gives have common compact support in the component, as
+required by Lemma~\ref{lem:dirichlet}. That lemma gives a strictly negative psh function
+\(u\), tending uniformly to zero at the boundary and pluriharmonic
+off \(\supp T\). Its upper semicontinuity gives \(\sup_H u<0\).
+Choose a regular value \(s\) between \(\sup_H u\) and zero for the
+smooth function off \(\supp T\), by Sard's theorem. All points of
+\(\{u=s\}\) are then in the smooth locus, and this level is compact
+by the boundary estimate. The component of \(\{u<s\}\) containing
+\(H\) has smooth Levi-flat boundary and contains the prescribed compact
+set. The same \(u-s\) defines the boundary on a full two-sided
+neighborhood where it is pluriharmonic and its differential is nonzero.
+Lemma~\ref{lem:annuli} completes
+the construction on \(X\).
+\end{proof}
+
+\section{Normal complex surfaces}
+
+\begin{corollary}\label{cor:normal}
+Let \(Y\) be a connected normal complex surface with a continuous psh
+exhaustion. Then \(Y\) admits a smooth psh exhaustion, with smoothness
+understood in local ambient embeddings.
+\end{corollary}
+\begin{proof}
+The compact case is immediate. Take a proper resolution
+\(\pi:X\to Y\) which is an isomorphism over the regular locus and has
+simple normal crossings exceptional divisor \cite{BierMil}. Normal surface singularities
+are isolated, the fibers of \(\pi\) are connected, and
+\(\pi_*\mathcal O_X=\mathcal O_Y\) by normality (holomorphic functions
+upstairs are locally bounded downstairs by properness and extend across
+the singular set). Connectedness of the fibers also follows from Stein
+factorization. Use the pulled-back exhaustion
+\(\rho=\rho_Y\circ\pi\) on \(X\).
+
+If \(X\) is a modification of a Stein space \(Z\), the proper map
+\(q:X\to Z\) is constant on the compact connected fibers of \(\pi\).
+It induces a continuous map \(\bar q:Y\to Z\), since \(\pi\) is a
+proper surjection. In local embeddings of \(Z\), descent of the
+coordinate functions by \(\pi_*\mathcal O_X=\mathcal O_Y\) makes
+\(\bar q\) holomorphic. It is proper, since
+\(\bar q^{-1}(J)=\pi(q^{-1}(J))\) for compact \(J\).
+Pull back a smooth strictly psh exhaustion of \(Z\).
+
+In the other case make one additional choice in the proof of
+Theorem~\ref{thm:main}. A component \(V\) of \(\{\rho<c\}\) contains
+every exceptional fiber it meets, by the choice of \(\rho\) and
+connectedness of the fibers. The psh potential of
+Lemma~\ref{lem:dirichlet} is constant on each such fiber, possibly
+with value \(-\infty\). This follows from the maximum principle on
+the normalization of each irreducible compact curve and connectedness.
+There are only finitely many singular points beneath \(\overline V\),
+by properness of the exhaustion and discreteness of the closed singular
+locus. In choosing the regular level \(s\) above \(\sup_H u\) we may
+therefore avoid the values on all these fibers. The smooth boundary
+constructed in the theorem is disjoint from the entire exceptional
+locus. Filling relatively compact complementary components retains
+this property. In Lemma~\ref{lem:annuli}, shrink every collar to have
+closure disjoint from the exceptional locus. The family of collars
+is locally finite by the nested exhaustion. Consequently the final
+smooth psh exhaustion \(v\) of \(X\) is constant or pluriharmonic
+on an open neighborhood of each connected exceptional fiber.
+
+For descent we use the normalization of local holomorphic primitives
+on a compact curve from Mongodi, S{\l}odkowski and Tomassini
+\cite[proof of Lemma~4.1]{MST}. We give the argument for a reducible
+exceptional fiber, allowing critical points of the pluriharmonic function.
+Let \(E=\pi^{-1}(p)\)
+be an exceptional fiber, and \(a=v|_E\) its constant value. A sufficiently
+small coordinate neighborhood of any point of \(E\) meets \(E\) in a
+connected set consisting of one smooth branch or two crossing branches.
+There \(v-a=\operatorname{Re} f\) for a holomorphic function \(f\).
+On every branch the real part is zero, so \(f\) is constant there.
+Adjust its imaginary constant so that \(f|_E=0\) in that neighborhood.
+These local choices agree as germs at all common points of \(E\):
+their difference is a purely imaginary constant locally and vanishes
+at that point. They glue to a holomorphic function on a neighborhood
+of \(E\). Indeed, take a finite cover by smaller charts with closures
+inside the original ones. Overlap points where two functions disagree
+cannot accumulate on \(E\) in the closures of the smaller charts, by
+the germ agreement just proved. Shrink around \(E\) to remove all
+such overlaps. Properness of \(\pi\) then supplies a neighborhood
+\(B\) of \(p\) whose full inverse image lies in the gluing neighborhood.
+The holomorphic function descends on \(B\), so \(v\) descends there as
+the real part of a holomorphic function plus \(a\). This is smooth
+and psh in the ambient sense. Away from the singular points descent
+uses the isomorphism. The descended function is exhaustive because
+its closed sublevels are the images of compact sublevels of \(v\).
+\end{proof}
+
+For arbitrary reduced complex surfaces, the cuspidal construction in
+\cite[Proposition~5.7]{CX}
+already gives a negative answer. Its divisor complement carries a
+continuous psh exhaustion, and every ambient \(C^1\) psh function on
+it is constant.
+
+\begin{thebibliography}{MST18}
+
+\bibitem[BGV92]{BGV} N. Berline, E. Getzler and M. Vergne,
+\emph{Heat Kernels and Dirac Operators}, Springer, 1992,
+\href{https://doi.org/10.1007/978-3-642-58088-8}{Chapter 2}.
+
+\bibitem[BM22]{BM} F. Bianchi and S. Mongodi,
+On minimal kernels and Levi currents on weakly complete complex manifolds,
+\emph{Proc. Amer. Math. Soc.} \textbf{150} (2022), 3927--3939.
+\href{https://arxiv.org/abs/2102.05328}{Author version}.
+
+\bibitem[BM97]{BierMil} E. Bierstone and P. D. Milman,
+Canonical desingularization in characteristic zero by blowing up the
+maximum strata of a local invariant, \emph{Invent. Math.}
+\textbf{128} (1997), 207--302.
+\href{https://arxiv.org/abs/alg-geom/9508005}{Author version}.
+
+\bibitem[B{\l}K07]{BK} Z. B{\l}ocki and S. Ko{\l}odziej,
+On regularization of plurisubharmonic functions on manifolds,
+\emph{Proc. Amer. Math. Soc.} \textbf{135} (2007), 2089--2093.
+\href{https://gamma.im.uj.edu.pl/~blocki/publ/appr.pdf}{Theorem~2}.
+
+\bibitem[Buc99]{Buchdahl} N. Buchdahl, On compact K\"ahler surfaces,
+\emph{Ann. Inst. Fourier} \textbf{49} (1999), 287--302.
+\href{https://www.numdam.org/article/AIF_1999__49_1_287_0.pdf}{\S2, Lemma~4}.
+
+\bibitem[CX26]{CX} Z. Chen and B. Xiao,
+\emph{Regularity of plurisubharmonic exhaustions and related problems},
+manuscript, version~8, November 20, 2026.
+Theorem numbers refer to that version.
+\href{https://github.com/chen-zhijian/psh-exhaustion}{Project repository}.
+
+\bibitem[DNS22]{DNS} T.-C. Dinh, V.-A. Nguy\^en and N. Sibony,
+Unique ergodicity for foliations on compact K\"ahler surfaces,
+\emph{Duke Math. J.} \textbf{171} (2022), 2627--2698.
+\href{https://arxiv.org/abs/1811.07450}{Author version, Appendix B}.
+
+\bibitem[DS04]{DS} T.-C. Dinh and N. Sibony,
+Regularization of currents and entropy, \emph{Ann. Sci. \'Ecole
+Norm. Sup.} (4) \textbf{37} (2004), 959--971.
+\href{https://arxiv.org/abs/math/0407532}{Author version, Theorem~4.1}.
+
+\bibitem[GW79]{GW} R. E. Greene and H. Wu,
+$C^\infty$ approximations of convex, subharmonic, and plurisubharmonic
+functions, \emph{Ann. Sci. \'Ecole Norm. Sup.} (4) \textbf{12} (1979),
+47--84. \href{https://doi.org/10.24033/asens.1361}{\S4}.
+
+\bibitem[Lud19]{Ludewig} M. Ludewig, Strong short-time asymptotics and
+convolution approximation of the heat kernel,
+\emph{Ann. Global Anal. Geom.} \textbf{55} (2019), 371--394.
+\href{https://arxiv.org/abs/1607.05152}{Author version, Theorems 1.1 and 3.1}.
+
+\bibitem[MS20]{MS} S. Mongodi and Z. S{\l}odkowski,
+Domains with a continuous exhaustion in weakly complete surfaces,
+\emph{Math. Z.} \textbf{296} (2020), 1011--1019.
+\href{https://arxiv.org/abs/1904.03497}{Author version, Lemma 2.1}.
+
+\bibitem[MST18]{MST} S. Mongodi, Z. S{\l}odkowski and G. Tomassini,
+Weakly complete complex surfaces,
+\emph{Indiana Univ. Math. J.} \textbf{67} (2018), 899--935.
+\href{https://arxiv.org/abs/1504.07215}{Author version, Lemma~4.1}.
+
+\bibitem[Nak80]{Nakano} S. Nakano, problem in I. Wakabayashi (ed.),
+\emph{Collected problems around several complex variables} (in Japanese),
+\emph{Sugaku} \textbf{32} (1980), 161--187.
+\href{https://doi.org/10.11429/sugaku1947.32.161}{\S I.1, Problem~1, p.~162}.
+
+\bibitem[NR97]{NR} T. Napier and M. Ramachandran, The Bochner--Hartogs
+dichotomy for weakly 1-complete K\"ahler manifolds, \emph{Ann. Inst.
+Fourier} \textbf{47} (1997), 1345--1365.
+\href{https://doi.org/10.5802/aif.1602}{Theorem~2.5}.
+
+\bibitem[NT13]{NiTam} L. Ni and L.-F. Tam, Poincar\'e--Lelong equation via
+the Hodge--Laplace heat equation, \emph{Compos. Math.} \textbf{149}
+(2013), 1856--1870. \href{https://doi.org/10.1112/S0010437X12000322}{Publisher}.
+
+\bibitem[Ohs81]{Ohsawa} T. Ohsawa, Weakly 1-complete manifold and Levi problem,
+\emph{Publ. Res. Inst. Math. Sci.} \textbf{17} (1981), 153--164.
+\href{https://doi.org/10.2977/PRIMS/1195186709}{Proposition~1.4}.
+
+\bibitem[RN26]{Oct} \emph{Intrinsic current methods for the K\"ahler surface
+regularization problem}, unpublished manuscript, October~29, 2026.
+The byline reads \emph{Research note}.
+
+\bibitem[Ric68]{Richberg} R. Richberg, Stetige streng pseudokonvexe Funktionen,
+\emph{Math. Ann.} \textbf{175} (1968), 257--286.
+\href{https://doi.org/10.1007/BF02063212}{Publisher}.
+
+\bibitem[Sib18]{Sibony} N. Sibony, Levi problem in complex manifolds,
+\emph{Math. Ann.} \textbf{371} (2018), 1047--1067.
+\href{https://doi.org/10.1007/s00208-017-1539-x}{Publisher}.
+
+\bibitem[Sko82]{Skoda} H. Skoda, Prolongement des courants positifs, ferm\'es
+de masse finie, \emph{Invent. Math.} \textbf{66} (1982), 361--376.
+\href{https://doi.org/10.1007/BF01389217}{Publisher}.
+
+\bibitem[ST04]{ST} Z. S{\l}odkowski and G. Tomassini, Minimal kernels of
+weakly complete spaces, \emph{J. Funct. Anal.} \textbf{210} (2004),
+125--147. \href{https://doi.org/10.1016/S0022-1236(03)00182-4}{Publisher}.
+
+\bibitem[TV08]{TV} G. Tomassini and V. V\^aj\^aitu, Weakly 1-complete
+surfaces with singularities and applications, \emph{Michigan Math. J.}
+\textbf{57} (2008).
+\href{https://doi.org/10.1307/mmj/1231770355}{Publisher}.
+
+\bibitem[V{\^\i}j22]{Vij} V. V\^{\i}j\^{\i}itu, Holomorphic convexity and
+pseudoconvex surfaces, \emph{Ann. Sc. Norm. Super. Pisa Cl. Sci.} (5)
+\textbf{23} (2022), 1659--1678.
+\href{https://doi.org/10.2422/2036-2145.202011_018}{Theorem~1.1}.
+
+\bibitem[Web19]{WeberEarly} B. Weber, Topology of K\"ahler manifolds with
+weakly pseudoconvex boundary, \emph{Michigan Math. J.} \textbf{68}
+(2019), 727--742. \href{https://arxiv.org/abs/1110.4571}{Author version}.
+
+\bibitem[Web22]{Weber} B. Weber, Pseudoconvex submanifolds in K\"ahler
+4-manifolds, \emph{Commun. Contemp. Math.}
+\href{https://doi.org/10.1142/S0219199724500147}{2450014}.
+\href{https://arxiv.org/abs/2208.00975}{Preprint (2022), Lemmas~1.1, 2.1 and 2.2}.
+
+\end{thebibliography}
+\end{document}
