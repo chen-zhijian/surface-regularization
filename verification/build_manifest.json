@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "date": "2026-11-20",
   "authors": [
     "Zhijian Chen",
@@ -7,14 +7,14 @@
   ],
   "source": {
     "path": "papers/src/main.tex",
-    "sha256": "ae37753b54e275655c807421a300ba4f94bc199636027fd11f165dc884f58126",
-    "bytes": 44404
+    "sha256": "dfbc6bdef451687afd1f7ea3b406229e139d9728b74ddd95745c3738b6a49732",
+    "bytes": 50061
   },
   "pdf": {
-    "path": "papers/paper_v1.pdf",
-    "sha256": "00cbbc2183d56623a188d1756ca1aef334af758009542db033d6e375ad2f94aa",
-    "bytes": 140318,
-    "pages": 11
+    "path": "papers/paper_v2.pdf",
+    "sha256": "e7e3b6e196283589a9184c3e1e2881f3166fd0b9f32d2602c2529c02085ee33d",
+    "bytes": 151206,
+    "pages": 13
   },
   "compiler": "XeTeX 3.141592653-2.6-0.999998 (TeX Live 2026)",
   "mathematical_review": "Internal review, pending independent specialist review"

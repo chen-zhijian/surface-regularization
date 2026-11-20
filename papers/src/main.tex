@@ -1,4 +1,4 @@
-% Revised November 20, 2026.
+% Version 2, November 20, 2026.
 \documentclass[11pt]{amsart}
 
 \usepackage[margin=1.15in]{geometry}
@@ -21,6 +21,8 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
 \numberwithin{equation}{section}
 \newcommand{\D}{\mathrm{D}}
 \newcommand{\ddc}{dd^c}
@@ -36,7 +38,7 @@ plurisubharmonic exhaustions on complex surfaces}
 \author{Bo Xiao}
 \address{School of Mathematical Sciences, University of Chinese Academy of Sciences, Beijing, China}
 \email{xb1994@amss.ac.cn}
-\date{November 20, 2026}
+\date{Version 2, November 20, 2026}
 \subjclass[2020]{Primary 32U10; Secondary 32T35, 32U25, 32U40}
 \keywords{Plurisubharmonic exhaustion, weak completeness, complex surface,
 Hermitian metric, Lelong number, Levi-flat hypersurface}
@@ -49,17 +51,17 @@ Hermitian metric, Lelong number, Levi-flat hypersurface}
 
 \begin{document}
 \begin{abstract}
-We give an intrinsic argument for smooth regularization on a complex
-surface carrying a continuous plurisubharmonic exhaustion. Outside the
-case of a modification of a Stein space, the intrinsic version of
-the level average from our companion paper produces a nonzero compactly supported current of
-uniformly vanishing two-dimensional density. A Hermitian heat operator
-and a scalar Dirichlet problem realize this current as the complex Hessian
-of a negative potential on arbitrarily large sublevels, with boundary value
-zero. Regular levels of those potentials give Levi-flat boundaries. A
-second Dirichlet problem and a surface intersection identity give a
-smooth global exhaustion. Choosing the boundary levels away from
-exceptional fibers extends the conclusion to normal complex surfaces.
+On a connected normal complex surface, a continuous plurisubharmonic
+exhaustion on one resolution suffices to construct a smooth
+plurisubharmonic exhaustion on the surface itself. The exhaustion can
+be chosen locally equal to the real part of a holomorphic function near
+each singular point. On a smooth surface the proof combines an average
+of level currents, a local Hermitian heat operator, and Dirichlet
+problems on exhaustion sublevels. On a resolution we choose the
+boundaries of those sublevels away from the exceptional fibers so that
+holomorphic primitives descend. A cuspidal example from our companion
+paper shows that the conclusion fails for reduced irreducible surfaces
+in general.
 \end{abstract}
 \maketitle
 \tableofcontents
@@ -81,6 +83,22 @@ If \(X\) admits a continuous real-valued plurisubharmonic exhaustion,
 then \(X\) admits a \(C^\infty\) plurisubharmonic exhaustion.
 \end{theorem}
 
+\begin{theorem}[Normal surfaces]\label{thm:normal}
+Let \(Y\) be a connected normal complex surface. The following are
+equivalent.
+\begin{enumerate}
+\item[\textup{(i)}] \(Y\) admits a continuous psh exhaustion.
+\item[\textup{(ii)}] Some proper resolution \(X\to Y\) admits a
+continuous psh exhaustion on \(X\).
+\item[\textup{(iii)}] \(Y\) admits a smooth psh exhaustion which, on a
+neighborhood of each singular point, is the real part of a holomorphic
+function.
+\end{enumerate}
+Smoothness is understood in local ambient embeddings. Under these
+conditions the pullback of the exhaustion in \textup{(iii)} is a
+smooth psh exhaustion on every proper resolution.
+\end{theorem}
+
 We use exhaustion in the sense that all finite sublevels are relatively
 compact. If the continuous input takes the extended value \(-\infty\),
 replace it by \(\max(\rho,0)\) to obtain the real-valued hypothesis.
@@ -97,9 +115,10 @@ boundaries are pluriharmonic.
 The output is a new exhaustion. Since every connected noncompact Riemann
 surface is Stein, Theorem~\ref{thm:main} and the threefold in \cite{CX}
 put the smallest dimension of a smooth counterexample at three.
-Corollary~\ref{cor:normal} treats normal surface singularities.
-The nonnormal example in \cite[Proposition~5.7]{CX} shows
-where that extension stops.
+The proof of Theorem~\ref{thm:normal} in Section~\ref{sec:normal}
+allows infinitely many isolated singularities. Remark~\ref{rem:cusp}
+recalls the reduced irreducible counterexample of
+\cite[Proposition~5.7]{CX}.
 
 Several positive cases were known. For an irreducible noncompact
 surface with a continuous psh exhaustion and a nonconstant global
@@ -128,8 +147,8 @@ equation on overlapping annuli and glue their pluriharmonic solutions.
 
 \subsection*{Acknowledgement and AI disclosure}
 OpenAI Codex developed and drafted the proposed Hermitian and Dirichlet
-arguments in this paper and carried out the subsequent internal proof and
-attribution review. The October~29 research note is cited under its
+arguments and the normal-surface extension, and carried out an internal
+proof and attribution review. The October~29 research note is cited under its
 recorded title and byline. Independent mathematical review of this
 preprint is pending.
 
@@ -694,84 +713,174 @@ Lemma~\ref{lem:annuli} completes
 the construction on \(X\).
 \end{proof}
 
-\section{Normal complex surfaces}
+\clearpage
+\raggedbottom
+\section{Descent to normal surfaces and the reduced counterexample}\label{sec:normal}
 
-\begin{corollary}\label{cor:normal}
-Let \(Y\) be a connected normal complex surface with a continuous psh
-exhaustion. Then \(Y\) admits a smooth psh exhaustion, with smoothness
-understood in local ambient embeddings.
-\end{corollary}
+Let \(\pi:X\to Y\) be a proper resolution of a normal surface, an
+isomorphism over \(Y_{\rm reg}\). Normality gives
+\(\pi_*\mathcal O_X=\mathcal O_Y\) by holomorphic extension over the
+isolated singularities. Stein factorization then gives connected fibers.
+After further blowups we may assume the reduced exceptional divisor has
+simple normal crossings \cite{BierMil}.
+
+\begin{lemma}[Descent near an exceptional fiber]\label{lem:descent}
+Let \(p\in Y_{\rm sing}\) and \(E=\pi^{-1}(p)_{\rm red}\). If \(v\)
+is real pluriharmonic on a neighborhood of \(E\), there are a
+neighborhood \(B\) of \(p\) and \(g\in\mathcal O_Y(B)\) such that
+\(v=\operatorname{Re}(g\circ\pi)\) on \(\pi^{-1}(B)\).
+\end{lemma}
 \begin{proof}
-The compact case is immediate. Take a proper resolution
-\(\pi:X\to Y\) which is an isomorphism over the regular locus and has
-simple normal crossings exceptional divisor \cite{BierMil}. Normal surface singularities
-are isolated, the fibers of \(\pi\) are connected, and
-\(\pi_*\mathcal O_X=\mathcal O_Y\) by normality (holomorphic functions
-upstairs are locally bounded downstairs by properness and extend across
-the singular set). Connectedness of the fibers also follows from Stein
-factorization. Use the pulled-back exhaustion
-\(\rho=\rho_Y\circ\pi\) on \(X\).
+On each compact irreducible component of \(E\), the pullback of \(v\)
+to its normalization is harmonic and therefore constant. The constants
+agree at the intersections. Write \(a\) for their common value.
+Following Mongodi, S{\l}odkowski and Tomassini
+\cite[proof of Lemma~4.1]{MST}, take coordinate balls along \(E\)
+on which \(v-a=\operatorname{Re}f_i\) with \(f_i\) holomorphic.
+A small ball meets \(E\) in one branch or two intersecting branches.
+The real part of \(f_i\) vanishes on each branch, so \(f_i\) is
+constant there. By subtracting its imaginary constant, arrange
+\(f_i|_E=0\). On overlaps \(f_i-f_j\) is locally an imaginary constant
+and vanishes wherever the overlap meets \(E\).
 
-If \(X\) is a modification of a Stein space \(Z\), the proper map
-\(q:X\to Z\) is constant on the compact connected fibers of \(\pi\).
-It induces a continuous map \(\bar q:Y\to Z\), since \(\pi\) is a
-proper surjection. In local embeddings of \(Z\), descent of the
-coordinate functions by \(\pi_*\mathcal O_X=\mathcal O_Y\) makes
-\(\bar q\) holomorphic. It is proper, since
-\(\bar q^{-1}(J)=\pi(q^{-1}(J))\) for compact \(J\).
-Pull back a smooth strictly psh exhaustion of \(Z\).
-
-In the other case make one additional choice in the proof of
-Theorem~\ref{thm:main}. A component \(V\) of \(\{\rho<c\}\) contains
-every exceptional fiber it meets, by the choice of \(\rho\) and
-connectedness of the fibers. The psh potential of
-Lemma~\ref{lem:dirichlet} is constant on each such fiber, possibly
-with value \(-\infty\). This follows from the maximum principle on
-the normalization of each irreducible compact curve and connectedness.
-There are only finitely many singular points beneath \(\overline V\),
-by properness of the exhaustion and discreteness of the closed singular
-locus. In choosing the regular level \(s\) above \(\sup_H u\) we may
-therefore avoid the values on all these fibers. The smooth boundary
-constructed in the theorem is disjoint from the entire exceptional
-locus. Filling relatively compact complementary components retains
-this property. In Lemma~\ref{lem:annuli}, shrink every collar to have
-closure disjoint from the exceptional locus. The family of collars
-is locally finite by the nested exhaustion. Consequently the final
-smooth psh exhaustion \(v\) of \(X\) is constant or pluriharmonic
-on an open neighborhood of each connected exceptional fiber.
-
-For descent we use the normalization of local holomorphic primitives
-on a compact curve from Mongodi, S{\l}odkowski and Tomassini
-\cite[proof of Lemma~4.1]{MST}. We give the argument for a reducible
-exceptional fiber, allowing critical points of the pluriharmonic function.
-Let \(E=\pi^{-1}(p)\)
-be an exceptional fiber, and \(a=v|_E\) its constant value. A sufficiently
-small coordinate neighborhood of any point of \(E\) meets \(E\) in a
-connected set consisting of one smooth branch or two crossing branches.
-There \(v-a=\operatorname{Re} f\) for a holomorphic function \(f\).
-On every branch the real part is zero, so \(f\) is constant there.
-Adjust its imaginary constant so that \(f|_E=0\) in that neighborhood.
-These local choices agree as germs at all common points of \(E\):
-their difference is a purely imaginary constant locally and vanishes
-at that point. They glue to a holomorphic function on a neighborhood
-of \(E\). Indeed, take a finite cover by smaller charts with closures
-inside the original ones. Overlap points where two functions disagree
-cannot accumulate on \(E\) in the closures of the smaller charts, by
-the germ agreement just proved. Shrink around \(E\) to remove all
-such overlaps. Properness of \(\pi\) then supplies a neighborhood
-\(B\) of \(p\) whose full inverse image lies in the gluing neighborhood.
-The holomorphic function descends on \(B\), so \(v\) descends there as
-the real part of a holomorphic function plus \(a\). This is smooth
-and psh in the ambient sense. Away from the singular points descent
-uses the isomorphism. The descended function is exhaustive because
-its closed sublevels are the images of compact sublevels of \(v\).
+Choose finitely many smaller balls covering \(E\) with closures in the
+original balls. On their overlaps the disagreement sets have closures
+disjoint from \(E\), by the agreement of germs just proved.
+Removing these closures gives a neighborhood \(N\) of \(E\) on which
+the \(f_i\) glue to \(f\). Properness makes \(\pi(X\setminus N)\)
+closed and disjoint from \(p\), so \(\pi^{-1}(B)\subset N\) for some
+neighborhood \(B\) of \(p\). Descend \(a+f\) using
+\(\pi_*\mathcal O_X=\mathcal O_Y\). A holomorphic function on \(Y\)
+locally lifts to a holomorphic function in an ambient embedding, so its
+real part has a smooth pluriharmonic ambient extension.
 \end{proof}
 
-For arbitrary reduced complex surfaces, the cuspidal construction in
-\cite[Proposition~5.7]{CX}
-already gives a negative answer. Its divisor complement carries a
-continuous psh exhaustion, and every ambient \(C^1\) psh function on
-it is constant.
+\begin{proof}[Proof of Theorem~\ref{thm:normal}]
+A smooth psh exhaustion is continuous, and proper holomorphic
+pullback preserves both plurisubharmonicity and compactness of
+sublevels. Thus \textup{(iii)} implies \textup{(i)}, and
+\textup{(i)} gives \textup{(ii)} on every resolution. These facts
+also give the last assertion of the theorem.
+
+For \textup{(ii)}, let \(\sigma:X_0\to Y\) be the given resolution
+and \(\rho_0\) the exhaustion upstairs. Each fiber is compact and
+connected. On the normalization of each compact irreducible curve
+in a fiber, \(\rho_0\) is subharmonic and therefore constant. The
+component constants agree at intersections. The proper surjection
+\(\sigma\) is a quotient map, so \(\rho_0=\rho_Y\circ\sigma\) with
+\(\rho_Y\) continuous. Its closed sublevels are compact as images of
+the corresponding sublevels of \(\rho_0\). Off the analytic image
+of the exceptional locus, \(\rho_Y\) is psh by the isomorphism.
+Normality implies local irreducibility, so the psh extension theorem
+\cite[Th\'eor\`eme~1.7]{Demailly} applies. Continuity identifies
+the extension with \(\rho_Y\). This proves \textup{(i)} even if the
+given resolution involved additional blowups over smooth points.
+
+It remains to prove \textup{(i)} implies \textup{(iii)}. For compact
+\(Y\) a constant suffices. Otherwise take the good resolution \(\pi\)
+above and put \(\rho=\rho_Y\circ\pi\). Each component of
+\(\{\rho<c\}\) contains the whole of each fiber it meets.
+
+Suppose first that \(X\) admits a proper modification \(q:X\to Z\)
+onto a Stein space. Global holomorphic functions separate points of
+\(Z\), and their pullbacks are constant on each compact connected
+fiber of \(\pi\). Hence \(q=\bar q\circ\pi\) for a continuous map
+\(\bar q:Y\to Z\), since \(\pi\) is a proper surjection. Descent of
+the coordinate functions in local embeddings of \(Z\) makes \(\bar q\)
+holomorphic. It is proper because
+\(\bar q^{-1}(J)=\pi(q^{-1}(J))\) for compact \(J\).
+
+The set \(A=\bar q(Y_{\rm sing})\) is locally finite in \(Z\), since
+the inverse image of a compact set meets the closed discrete singular
+locus in finitely many points. Choose a smooth strictly psh exhaustion
+\(h\) on \(Z\), in the local ambient sense. Around the points of \(A\)
+choose disjoint, locally finite neighborhoods with local embeddings.
+At such a point, taken as
+the origin, let \(H\) be a smooth strictly psh ambient extension of
+\(h\). The Taylor polynomial gives a holomorphic polynomial \(P\)
+of degree at most two with
+\[
+ H(z)-\operatorname{Re}P(z)
+     =\sum H_{j\bar k}(0)z_j\bar z_k+o(|z|^2)\geq c|z|^2
+\]
+on a small ball, with equality of values at zero. Choose \(\delta>0\)
+smaller than the gap on the boundary sphere. The smooth regularized
+maximum of \(H\) and \(\operatorname{Re}P+\delta\), with sufficiently
+small smoothing parameter, equals the latter near zero and \(H\)
+near the boundary sphere. Use one that dominates the ordinary maximum.
+Restrict these functions to \(Z\) and keep \(h\) outside the balls.
+Local finiteness gives a smooth psh exhaustion \(\widetilde h\geq h\)
+which is locally a holomorphic real part near \(A\). Its pullback by
+\(\bar q\) gives \textup{(iii)}.
+
+In the remaining case use the current and sublevel construction of
+Theorem~\ref{thm:main} on \(X\). For any prescribed compact set, choose
+\(H\), \(c\), the component \(V\) of \(\{\rho<c\}\) containing \(H\),
+and the potential \(u\) as in that proof. On each exceptional fiber
+contained in \(V\), \(u\) is constant, possibly identically
+\(-\infty\), by the same maximum principle on the compact curves.
+The compact set \(\pi(\overline V)\) meets only finitely many singular
+points. Choose the regular value \(s\in(\sup_H u,0)\) to avoid the
+finitely many fiber values in \(V\). The boundary of the component of
+\(\{u<s\}\) containing \(H\) misses the entire exceptional locus.
+Filling relatively compact complementary components keeps whole boundary
+components, so the filled boundary still misses that locus.
+
+Make this choice at each step of Lemma~\ref{lem:annuli} and shrink
+the collars so their closures miss the exceptional locus. The closures
+form a locally finite family, so their union is closed. Off that union
+the resulting exhaustion \(v\)
+agrees locally with a constant or a pluriharmonic annular solution.
+Thus \(v\) is pluriharmonic on a neighborhood of every exceptional
+fiber. Apply Lemma~\ref{lem:descent} at each singular point and use the
+isomorphism over \(Y_{\rm reg}\). The descended functions agree because
+their pullbacks all equal \(v\). The resulting smooth psh function
+\(\psi\) is exhaustive since
+\(\{\psi\leq t\}=\pi(\{v\leq t\})\) is compact for every real \(t\).
+\end{proof}
+
+\clearpage
+\begin{remark}[Failure for reduced surfaces]\label{rem:cusp}
+Chen and Xiao \cite[Proposition~5.7, p.~37]{CX} construct a reduced
+irreducible projective surface \(S\) and an effective Cartier divisor
+\(D\) for which \(X=S\setminus D\) has a continuous psh exhaustion
+and every real-valued ambient \(C^1\) psh function on \(X\) is constant.
+In particular the noncompact quasi-projective surface \(X\) has no
+smooth psh exhaustion.
+
+Write \(C\) for the projective cuspidal cubic \(y^2z=x^3\) and
+\(\nu:\mathbb P^1\to C\) for its normalization, with cusp \(\nu(0)\).
+Over \(U=C\setminus\{\nu(-1),\nu(\infty)\}\) and
+\(V=C\setminus\{\nu(0)\}\), glue trivial line bundles using the
+transition \(w=(1+t)\zeta\), where \(t=y/x\) on \(U\cap V\).
+The surface \(X\) is the total space of this bundle, and \(D\) is
+the infinity section of its projective completion. On the normalization
+the two fiber coordinates give a single global coordinate \(w\).
+Since \(\nu\) is a homeomorphism, the same is true of
+\(q:\mathbb P^1\times\C\to X\). In the bundle chart over the cusp,
+\[
+ (x,y)=(t^2,t^3),\qquad w=(1+t)\zeta .
+\]
+The function \(\rho(q(t,w))=|w|^2\) is continuous and exhaustive.
+A holomorphic disc in the cusp lifts locally: where \(x\ne0\) take
+\(t=y/x\), which extends at isolated zeros since \(t^2=x\); for a
+disc in the cusp fiber take \(t=0\). Thus \(\rho\) is psh by the disc
+criterion of Forn{\ae}ss and Narasimhan
+\cite[Th\'eor\`eme~1.6]{Demailly}. If \(u\) is ambient \(C^1\) and psh, \(u\circ q=f(w)\)
+by the maximum principle on each \(\mathbb P^1\times\{w\}\), with
+\(f\) of class \(C^1\) by restriction over a smooth base point.
+An ambient \(C^1\) extension \(G\) at \((0,0,\zeta)\) satisfies
+\[
+ G(t^2,t^3,\zeta)=f((1+t)\zeta).
+\]
+Substitute \(t=sh\) for \(s\in\R\), \(h\in\C\), and differentiate
+at \(s=0\). This gives \(df_\zeta(\zeta h)=0\) for all \(h\).
+Hence \(f\) is constant on \(\C^*\), and continuity gives the same
+value at zero. The same local calculation with \(f(w)=\operatorname{Re}w\)
+shows precisely where the normal proof breaks: the holomorphic coordinate
+\(w\) upstairs induces a continuous function downstairs whose real part
+is not ambient \(C^1\) near a point of the cusp fiber with \(\zeta\ne0\).
+\end{remark}
 
 \begin{thebibliography}{MST18}
 
@@ -804,6 +913,11 @@ On regularization of plurisubharmonic functions on manifolds,
 manuscript, version~8, November 20, 2026.
 Theorem numbers refer to that version.
 \href{https://github.com/chen-zhijian/psh-exhaustion}{Project repository}.
+
+\bibitem[Dem85]{Demailly} J.-P. Demailly, Mesures de Monge--Amp\`ere et
+caract\'erisation g\'eom\'etrique des vari\'et\'es alg\'ebriques affines,
+\emph{M\'em. Soc. Math. France} (N.S.) \textbf{19} (1985).
+\href{https://doi.org/10.24033/msmf.320}{Th\'eor\`emes~1.6 and 1.7}.
 
 \bibitem[DNS22]{DNS} T.-C. Dinh, V.-A. Nguy\^en and N. Sibony,
 Unique ergodicity for foliations on compact K\"ahler surfaces,
