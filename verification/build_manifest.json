@@ -1,21 +1,41 @@
 {
   "version": 2,
   "date": "2026-11-20",
+  "bibliography_updated": "2026-11-21",
   "authors": [
     "Zhijian Chen",
     "Bo Xiao"
   ],
   "source": {
     "path": "papers/src/main.tex",
-    "sha256": "dfbc6bdef451687afd1f7ea3b406229e139d9728b74ddd95745c3738b6a49732",
-    "bytes": 50061
+    "sha256": "32a1dd8595d00a6687c0dad3c6aa8174886f01f2e517eabb4a04744670be2c35",
+    "bytes": 50265
   },
   "pdf": {
     "path": "papers/paper_v2.pdf",
-    "sha256": "e7e3b6e196283589a9184c3e1e2881f3166fd0b9f32d2602c2529c02085ee33d",
-    "bytes": 151206,
+    "sha256": "811115ccd86a36d72519f732cdb162decb1a2e53b7d1bce6ced01cfafedb695a",
+    "bytes": 151395,
     "pages": 13
   },
+  "supporting_documents": [
+    {
+      "citation": "RN26",
+      "title": "Intrinsic current methods for the Kähler surface regularization problem",
+      "byline": "Research note",
+      "date": "2026-10-29",
+      "source": {
+        "path": "supporting_notes/intrinsic-current-methods/note.tex",
+        "sha256": "3451f1237c7f5de79f2128d708a4e48a64cc6c1c0485024667df8448faf11fb4",
+        "bytes": 66695
+      },
+      "pdf": {
+        "path": "supporting_notes/intrinsic-current-methods/note.pdf",
+        "sha256": "93e91c8d1abc6b281c31ef2ac52ab5f8e712c8787c421ccac0433f5ae520203c",
+        "bytes": 412494,
+        "pages": 20
+      }
+    }
+  ],
   "compiler": "XeTeX 3.141592653-2.6-0.999998 (TeX Live 2026)",
   "mathematical_review": "Internal review, pending independent specialist review"
 }

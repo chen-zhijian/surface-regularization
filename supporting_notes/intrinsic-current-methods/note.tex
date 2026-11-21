@@ -1,0 +1,1425 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\D}{\mathcal D}
+\newcommand{\ddc}{dd^c}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\osc}{\operatorname{osc}}
+\title{Intrinsic current methods for the K\"ahler surface regularization problem}
+\author{Research note}
+\date{October 29, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We investigate whether a continuous plurisubharmonic exhaustion on an arbitrary noncompact K\"ahler surface can be replaced by a smooth one. The general implication is not proved here, and no counterexample is constructed. We establish intrinsic averaging and $L^2$ closedness statements, give a complete infinite-volume metric construction, and prove a singular-current closedness result under bounded curvature. A separate two-current argument treats continuously exhausted domains in compact K\"ahler surfaces without any divisorial-boundary hypothesis. We formulate the remaining separation problem by smooth psh hulls and prove a bounded-mass duality criterion that exposes the missing closed-range step. We also prove a conditional regularization theorem, without compactification, when a complete bounded-curvature K\"ahler metric has a positive Green kernel tending to zero at infinity.
+\end{abstract}
+
+\section{The question and reductions}
+Throughout, $X$ is a connected noncompact complex surface and an exhaustion means a real-valued function with compact sublevel sets. The target is
+\[
+ X\text{ K\"ahler},\quad \rho\in C^0(X)\cap\operatorname{PSH}(X)
+ \text{ exhaustive}
+ \quad\Longrightarrow\quad
+ \operatorname{PSH}(X)\cap C^\infty(X)
+ \text{ contains an exhaustion}.
+\]
+We set $\D=i\partial\bar\partial$; positive normalization factors in $dd^c$ do not affect the assertions. The existence of some smooth exhaustion is requested, not smooth approximation of every given psh function. The compact-divisor-complement proof does not imply this assertion.
+
+Two established reductions do not require a compactification. If $\mathcal O(X)\ne\mathbb C$, V\^aj\^aitu's holomorphic-convexity theorem \cite[Theorem~1.1]{Vajaitu} applies, and a smooth strictly psh exhaustion of the Stein Remmert reduction pulls back to a smooth psh exhaustion of $X$. This is the safe citation for the continuous-exhaustion version: Ohsawa's original standing definition of weak completeness used a smooth exhaustion.
+
+If $X$ has exactly one end, the Bochner--Hartogs dichotomy \cite[Theorem~2.5, case~(i)]{NR} says that either $H_c^1(X,\mathcal O)=0$, or there is a proper holomorphic map from $X$ onto a Riemann surface. The latter surface is noncompact, because the map is proper and $X$ is noncompact; pulling back its smooth strictly subharmonic exhaustion solves our problem. Thus a one-ended counterexample must have
+\[
+ \mathcal O(X)=\mathbb C,\qquad H_c^1(X,\mathcal O)=0.
+\]
+Neither condition is itself an obstruction to smooth exhaustion.
+
+\section{Intrinsic averaging}
+\begin{proposition}\label{prop:averaging}
+Let $X$ be a complex surface with a continuous psh exhaustion $\rho$ and let $\omega$ be any smooth Hermitian form. If $X$ is not a modification of a Stein space, there is $t_0$ such that for every $t_0<a<b$ there is a positive $(1,1)$-current $T$ satisfying
+\[
+ \D T=0,\quad \supp T\subset\rho^{-1}([a,b]),\quad
+ \int_XT\wedge\omega=1,\quad \nu(T,x)=0\quad(x\in X).
+\]
+In particular, compactification and K\"ahlerness are unnecessary for this step.
+\end{proposition}
+\begin{proof}
+Let $\Sigma_X^0$ be the continuous minimal kernel. By \cite[Lemma~2.1]{MS}, failure to be a Stein modification implies
+$(t_0,\infty)\subset\rho(\Sigma_X^0)$ for some $t_0$.
+For $t>t_0$, the compact level $K_t=\{\rho=t\}$ cannot have a smooth strictly psh neighborhood function $v$. Indeed, normalize $0<v<1$ on a narrow compact band $|\rho-t|\le\delta$, choose $0<\eta<1$ and $0<\varepsilon<\eta\delta/2$, and replace
+$g(\rho)$, where $g(s)=s+\eta|s-t|$, on that band by
+\[
+ \max\{g(\rho),\,\rho+\varepsilon v\}.
+\]
+The first branch dominates near the edges and the second near $K_t$.
+This produces a continuous psh exhaustion strongly psh near the entire level, contradicting $K_t\cap\Sigma_X^0\ne\varnothing$.
+
+Separate, in the Banach space of continuous real $(1,1)$-forms on $K_t$, the open positive-definite cone from
+$\{\D f|_{K_t}:f\in C_c^\infty(X,\mathbb R)\}$.
+Hahn--Banach gives a positive order-zero current $T_t$ supported on $K_t$, annihilating all $\D f$. Its positive Hermitian mass may be normalized to one.
+
+For each $n$, choose the $n$ equally spaced midpoint levels in $[a,b]$ and average their currents:
+\[
+ t_{n,j}=a+(j-\tfrac12)(b-a)/n,\qquad
+ T_n=\frac1n\sum_{j=1}^nT_{t_{n,j}}.
+\]
+Their supports lie in one compact set, so a subsequence converges weakly to a positive $\D$-closed current of mass one. No measurable selection is needed.
+
+In a coordinate ball, let $\beta=\D|z|^2$ and fix $R$ with the closed $2R$ ball in the chart. The local Lelong--Jensen formula for positive $\D$-closed currents \cite[Appendix~B]{DNS} gives
+\[
+ r^{-2}\int_{B(x,r)}T_t\wedge\beta
+ \le R^{-2}\int_{B(x,R)}T_t\wedge\beta\le C_R.
+\]
+Only grid levels in
+$[\inf_{B(x,r)}\rho,\sup_{B(x,r)}\rho]$ contribute. Thus
+\[
+ r^{-2}\int_{B(x,r)}T_n\wedge\beta
+ \le C_R\left(\frac{\osc_{B(x,r)}\rho}{b-a}+\frac2n\right).
+\]
+Use a nonnegative compactly supported cutoff times $\beta$ to regard current convergence as weak convergence of positive measures. The open-set Portmanteau inequality gives
+\[
+ r^{-2}\int_{B(x,r)}T\wedge\beta
+ \le\frac{C_R}{b-a}\osc_{B(x,r)}\rho\longrightarrow0.
+\]
+The same convergent subsequence works for every fixed ball. This proves zero Lelong numbers everywhere.
+\end{proof}
+
+\section{Complete metrics and an intrinsic intersection inequality}
+
+% Begin complete-infinite-volume
+\begin{proposition}\label{prop:complete-infinite-volume}
+Let $X$ be a connected noncompact K\"ahler manifold of complex
+dimension $N\geq1$. If $X$ admits a continuous plurisubharmonic
+exhaustion, then $X$ admits a smooth complete K\"ahler metric of
+infinite volume. More precisely, for every initial K\"ahler form
+$\omega$, such a form can be chosen as
+\[
+ \widehat\omega=3\omega+i\partial\bar\partial(\zeta^2),
+\]
+where $\zeta$ is a positive smooth exhaustion. No smooth
+plurisubharmonic exhaustion is assumed or produced by this argument.
+\end{proposition}
+
+\begin{proof}
+Write $\D=i\partial\bar\partial$. We use the following precise
+form of Demailly's approximation theorem
+\cite[Theorem~9.4, p.~506]{Demailly82}. There are positive continuous
+exhaustions $m,M$ on $X$, with $m<M$, such that for every positive
+continuous function $\varepsilon$ on $X$ there exists a smooth
+real function $\psi$ satisfying
+\begin{equation}\label{eq:arbitrary-error-approximation}
+ m\leq\psi\leq M,
+ \qquad \D\psi\geq-\varepsilon\omega.
+\end{equation}
+The functions $m$ and $M$ are fixed before $\varepsilon$ is chosen.
+In that reference weak pseudoconvexity is defined by the existence
+of a plurisubharmonic exhaustion, without a smoothness requirement
+(Definition~1.1, p.~461). Thus the theorem applies to the hypothesis
+of the proposition.
+
+Choose a smooth relatively compact connected domain $\Omega_1$
+with nonempty interior. Inductively construct smooth relatively
+compact connected domains $\Omega_j$, with $K_j=\overline{\Omega_j}$,
+and positive numbers $a_j$ so that
+\begin{equation}\label{eq:condenser-boundaries}
+ K_j\Subset\Omega_{j+1},\qquad
+ \bigcup_j\Omega_j=X,\qquad
+ M<a_j\text{ on }K_j,\qquad
+ m>a_j+1\text{ on }\partial\Omega_{j+1}.
+\end{equation}
+We may also require $a_{j+1}>a_j+2$. To do this, after choosing
+$K_j$, take $a_j>\sup_{K_j}M$, increasing it to meet the previous
+numerical requirement. Choose $\Omega_{j+1}$ to contain $K_j$,
+the compact set $\{m\leq a_j+1\}$, and the next member of any
+fixed compact exhaustion of $X$. These compact sets can be
+contained in a smooth relatively compact connected domain.
+
+Put $A_j=\Omega_{j+1}\setminus K_j$. For a real Sobolev function
+$v$ on a relatively compact set $A$, use the Dirichlet energy
+\[
+ \mathcal E_A(v)
+ =\int_A i\partial v\wedge\bar\partial v\wedge\omega^{N-1}.
+\]
+Define the condenser capacity
+\[
+ c_j=\inf\left\{\mathcal E_{A_j}(v):
+ v\in W^{1,2}(A_j),\quad
+ \operatorname{Tr}_{\partial\Omega_j}v=0,\quad
+ \operatorname{Tr}_{\partial\Omega_{j+1}}v=1\right\}.
+\]
+Here all traces are taken from $A_j$. We have $0<c_j<\infty$.
+Finiteness follows by choosing a smooth function equal to zero
+near $K_j$ and one near $\partial\Omega_{j+1}$. For positivity,
+extend an admissible $v$ by zero across $\Omega_j$. Then $1-v$
+belongs to $W^{1,2}_0(\Omega_{j+1})$ and equals one on $\Omega_j$.
+The Poincar\'e inequality on the bounded smooth connected domain
+$\Omega_{j+1}$ gives
+\[
+ 0<\operatorname{Vol}_{\omega}(\Omega_j)
+ \leq\int_{\Omega_{j+1}}|1-v|^2\,dV_\omega
+ \leq C_j\int_{A_j}|dv|_\omega^2\,dV_\omega
+ =C'_j\mathcal E_{A_j}(v).
+\]
+The last equality is the usual fixed positive dimensional
+normalization between these two Dirichlet energies. Taking the
+infimum proves strict positivity, even if $A_j$ is disconnected.
+
+Choose a smooth increasing convex function
+$\chi:[0,\infty)\to[1,\infty)$, with $\chi'\geq1$, such that
+\begin{equation}\label{eq:large-increments}
+ \delta_j:=\chi(a_j+1)-\chi(a_j)\geq c_j^{-1/2}
+ \quad\text{for every }j.
+\end{equation}
+Such a function exists: choose a smooth nondecreasing positive
+derivative, at least one everywhere, whose value on each
+$[a_j,a_j+1]$ is at least $c_j^{-1/2}$, and integrate it.
+
+Only now choose the error function
+\[
+ \varepsilon(x)=
+ \frac{1}{\chi(M(x))\chi'(M(x))}>0
+\]
+and obtain $\psi$ from \eqref{eq:arbitrary-error-approximation}.
+Set $\zeta=\chi(\psi)$. Since $\chi$ is increasing and convex,
+\begin{align*}
+ \D\zeta
+ &=\chi'(\psi)\D\psi
+   +\chi''(\psi)i\partial\psi\wedge\bar\partial\psi\\
+ &\geq-\chi'(\psi)\varepsilon\omega
+ \geq-\frac{\omega}{\chi(M)}.
+\end{align*}
+We also have $0<\zeta\leq\chi(M)$. Therefore
+\begin{equation}\label{eq:complete-metric-bound}
+ \widehat\omega
+ :=3\omega+\D(\zeta^2)
+ =3\omega+2\zeta\D\zeta
+       +2i\partial\zeta\wedge\bar\partial\zeta
+ \geq\omega+2i\partial\zeta\wedge\bar\partial\zeta.
+\end{equation}
+In particular, $\widehat\omega$ is a smooth positive closed
+$(1,1)$-form. Notice that the bound $\psi\leq M$ is essential
+in both estimates; simply composing an arbitrary almost
+plurisubharmonic function with $\chi$ would not suffice.
+
+Because $\zeta\geq\chi(m)$, the function $\zeta$ is proper.
+Inequality~\eqref{eq:complete-metric-bound} bounds $|d\zeta|$
+with respect to the Riemannian metric of $\widehat\omega$ by a
+fixed constant. Consequently every curve escaping all compact
+subsets has infinite length. Equivalently, any Cauchy sequence for
+that metric has bounded $\zeta$ and hence lies in a compact
+subset, where it converges. Thus $\widehat\omega$ is complete.
+
+It remains to prove that its volume is infinite. From
+\eqref{eq:condenser-boundaries} and $m\leq\psi\leq M$ we have
+\[
+ \zeta\leq\chi(a_j)\text{ on }\partial\Omega_j,
+ \qquad
+ \zeta\geq\chi(a_j+1)\text{ on }\partial\Omega_{j+1}.
+\]
+The Lipschitz truncation
+\[
+ v_j=\min\left\{1,\max\left\{0,
+       \frac{\zeta-\chi(a_j)}{\delta_j}\right\}\right\}
+\]
+is therefore admissible for $c_j$. The Sobolev chain rule gives
+\[
+ c_j\leq\mathcal E_{A_j}(v_j)
+ \leq\delta_j^{-2}\mathcal E_{A_j}(\zeta),
+ \qquad
+ \mathcal E_{A_j}(\zeta)\geq c_j\delta_j^2\geq1.
+\]
+The annuli $A_j$ are pairwise disjoint. Hence
+\[
+ \int_X i\partial\zeta\wedge\bar\partial\zeta
+                      \wedge\omega^{N-1}=\infty.
+\]
+Finally, monotonicity of the determinant for positive Hermitian
+forms and the rank-one identity
+$(i\partial\zeta\wedge\bar\partial\zeta)^2=0$ imply
+\[
+ \widehat\omega^N
+ \geq\bigl(\omega+2i\partial\zeta
+                         \wedge\bar\partial\zeta\bigr)^N
+ =\omega^N+2N i\partial\zeta\wedge\bar\partial\zeta
+                                      \wedge\omega^{N-1}.
+\]
+Its integral, and therefore the volume of $\widehat\omega$,
+is infinite.
+\end{proof}
+
+\begin{remark}
+Demailly's Theorem~1.3 already gives completeness, using the
+same square-potential construction with a suitably small error.
+The condenser argument above is an additional deduction ensuring
+infinite volume. It does not supply curvature bounds, bounded
+geometry, a Green function, or estimates for regularizing
+singular currents. In particular it does not resolve the gap
+between measure-valued positive $\partial\bar\partial$-closed
+currents and an $L^2$ closedness theorem.
+\end{remark}
+
+
+% End complete-infinite-volume
+
+
+% Begin intrinsic-L2
+\begin{theorem}\label{thm:L2-closedness}
+Let $(X,\omega)$ be a connected complete K\"ahler surface of infinite
+volume. Let $T$ be a real $(1,1)$-current whose coefficients are globally
+in $L^2(X,\omega)$. Suppose $T\geq0$ and $i\partial\bar\partial T=0$
+in the sense of distributions. Then $dT=0$. Moreover, $T\wedge T=0$
+almost everywhere, where this wedge product is the $L^1$ form defined
+by the $L^2$ coefficients.
+\end{theorem}
+
+\begin{proof}
+Set $\D=i\partial\bar\partial$, let $\Lambda$ be contraction with
+$\omega$, and put $dV=\omega^2/2$. These choices only fix constants;
+the conclusion is unchanged if $dd^c$ is any positive multiple of
+$\D$. For every real $(1,1)$-form $\gamma$ on a K\"ahler surface,
+the pointwise linear-algebra identity is
+\begin{equation}\label{eq:linear-algebra}
+ \gamma\wedge\gamma
+   =\bigl((\Lambda\gamma)^2-|\gamma|^2\bigr)dV.
+\end{equation}
+For example, in a unitary frame this is the identity
+$2\lambda_1\lambda_2=(\lambda_1+\lambda_2)^2-
+(\lambda_1^2+\lambda_2^2)$.
+In particular, a real primitive $(1,1)$-form satisfies
+$\gamma\wedge\gamma=-|\gamma|^2dV$.
+
+We first justify a density statement for the scalar operator
+$L=\Lambda\D$ with domain $C_c^\infty(X,\mathbb R)$.
+Up to a fixed nonzero real factor and sign, this is the scalar
+Laplace--Beltrami operator. If an $L^2$ function $h$ is orthogonal to the range of $L$, it is distributionally harmonic and hence smooth by elliptic regularity. Complete-metric cutoffs $\chi_R$ with $|d\chi_R|\leq C/R$ and the Caccioppoli inequality give
+\[
+ \int_X\chi_R^2|dh|^2\,dV
+ \leq4\int_X|h|^2|d\chi_R|^2\,dV\longrightarrow0.
+\]
+Thus $h$ is constant; connectedness and infinite volume force that constant to vanish.
+Consequently
+\[
+ \overline{L(C_c^\infty(X,\mathbb R))}^{\,L^2}
+  = (\ker L^*)^\perp=L^2(X,\mathbb R).
+\]
+Only density of the range is used; no closed-range assertion and no
+bounded Green operator are needed. The same vanishing of the scalar
+$L^2$ kernel is used in \cite[Lemma~3.1.1]{Dingoyan}.
+
+Put $f=\Lambda T\in L^2(X,\mathbb R)$. Choose real
+$u_n\in C_c^\infty(X)$ such that $Lu_n\longrightarrow f$ in $L^2$.
+For every real $v\in C_c^\infty(X)$, Stokes' theorem and
+\eqref{eq:linear-algebra} give
+\[
+  \int_X(\D v)^2=0,
+  \qquad
+  \|\D v\|_{L^2}^2=\|\Lambda\D v\|_{L^2}^2.
+\]
+The first equality follows because $\D v$ is an exact closed form
+with compact support. Applying the second equality to $u_n-u_m$
+shows that $\eta_n=\D u_n$ is Cauchy in $L^2$. Let its limit be
+$\eta$. Then $\eta$ is a real closed $(1,1)$-current,
+$\Lambda\eta=f$, and
+\[
+ \int_X\eta^2=\lim_n\int_X\eta_n^2=0.
+\]
+Here and below convergence of the integrals follows from the
+continuity of the wedge pairing on $L^2\times L^2$.
+
+The distributional equation $\D T=0$, tested against $u_n$, says
+$\int_XT\wedge\eta_n=0$. Hence $\int_XT\wedge\eta=0$.
+The form $\beta=T-\eta$ is primitive, so
+\[
+ \int_X T^2
+  =\int_X(T-\eta)^2
+  =-\|\beta\|_{L^2}^2\leq0.
+\]
+On the other hand, positivity of $T$ implies $T^2\geq0$
+almost everywhere. Therefore $\beta=0$ and $T=\eta$ is closed.
+The same identity gives $\int_XT^2=0$, so $T^2=0$ almost everywhere.
+\end{proof}
+
+\begin{remark}
+Compact support is not needed in Theorem~\ref{thm:L2-closedness}. Proposition~\ref{prop:complete-infinite-volume} supplies a metric with its completeness and volume hypotheses on the surfaces under investigation. The remaining issue is that the currents from averaging need not have $L^2$ coefficients.
+\end{remark}
+
+\begin{remark}[Averaging can remain singular]
+Let $E$ be a compact elliptic curve, let $X=E\times\mathbb C$, and
+give $X$ a product complete K\"ahler metric with
+$\int_E\omega_E=1$. The metric has infinite volume. For
+$0<a<b$, take the smooth psh exhaustion $\rho(e,z)=|z|^2$ and set
+\[
+ T=\frac1{b-a}\int_a^b [E\times\{\sqrt t\}]\,dt.
+\]
+This is precisely an average of mass-one positive closed currents
+supported on the levels $\rho=t$. It is positive and closed, has
+compact support, and has zero Lelong number at every point:
+its local trace mass is $O(r^3)$, including at the two endpoints
+of the interval. But its trace measure is a nonzero measure supported
+on the real three-dimensional subset
+$E\times[\sqrt a,\sqrt b]$, which has zero four-dimensional volume.
+Thus $T$ has no $L^2$ coefficients. Even a smooth exhaustion and the
+vanishing of every Lelong number do not bridge this gap.
+\end{remark}
+
+
+
+
+% End intrinsic-L2
+
+
+\section{Singular currents under bounded curvature}
+
+% Begin bounded-geometry
+\begin{proposition}\label{prop:bounded-geometry-closedness}
+Let $(X,\omega)$ be a connected complete K\"ahler surface of infinite
+volume whose Riemannian curvature tensor is uniformly bounded.
+Let $T$ be a positive $(1,1)$-current with compact support
+such that
+\[
+ i\partial\bar\partial T=0,
+ \qquad \nu(T,x)=0\quad\hbox{for every }x\in X.
+\]
+Then $dT=0$.
+\end{proposition}
+
+We use $\D=i\partial\bar\partial$, $dV=\omega^2/2$, and contraction
+$\Lambda$ with $\omega$. Any positive normalization of $dd^c$ gives
+the same assertions. The scalar nonnegative Laplacian is denoted by
+$\Delta_0$, its heat semigroup by $P_t=e^{-t\Delta_0}$, and the Hodge
+heat semigroup on real $(1,1)$-forms by $H_t=e^{-t\Delta_2}$.
+
+\begin{lemma}[$L^2$ primitive-defect identity]\label{lem:L2-defect}
+On a connected complete infinite-volume K\"ahler surface, let $A$ be
+a real $L^2$ $(1,1)$-form with $\D A=0$ distributionally. There is a
+real closed $L^2$ $(1,1)$-form $\eta$ such that
+\[
+ \Lambda\eta=\Lambda A,\qquad
+ \int_X\eta^2=\int_X A\wedge\eta=0,
+ \qquad
+ \int_X A^2=-\|A-\eta\|_{L^2}^2.
+\]
+No positivity assumption on $A$ is required.
+\end{lemma}
+
+\begin{proof}
+The construction of $\eta$ in the proof of Theorem~\ref{thm:L2-closedness} used only the real $L^2$ and $\D$-closed hypotheses. Positivity was used only after obtaining the displayed identity. Repeating that construction with $A$ gives all the assertions.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:bounded-geometry-closedness}]
+Let $\mu=T\wedge\omega$ be the trace measure. It is finite and
+compactly supported. Positivity implies that the tensor variation
+of $T$ is bounded by a fixed multiple of $\mu$.
+
+\medskip\noindent
+\emph{Uniform local mass decay.}
+We first show
+\begin{equation}\label{eq:uniform-decay}
+ \varepsilon(r):=\sup_{x\in X}\frac{\mu(B_g(x,r))}{r^2}
+       \longrightarrow0\quad(r\downarrow0).
+\end{equation}
+In a holomorphic coordinate chart put $\beta=\D|z|^2$. On a smaller
+compact set of centers, for every sufficiently small fixed $r>0$,
+the function
+\[
+ x\longmapsto r^{-2}
+       \int_{\overline{B_{\rm eucl}(x,r)}}T\wedge\beta
+\]
+is upper semicontinuous. Indeed, the closed balls vary continuously
+and their measures obey the closed-set upper-semicontinuity
+inequality. The Lelong--Jensen formula for positive $dd^c$-closed
+currents makes these normalized masses nondecreasing in $r$, with
+limit zero as $r\downarrow0$; see
+\cite[Appendix~B, (B.1)--(B.2)]{DNS}.
+Given $\epsilon>0$, the open sets on which a fixed-radius normalized
+mass is less than $\epsilon$ cover the compact set of centers as the
+radius varies toward zero. A finite subcover and monotonicity give
+uniform convergence to zero. This is the upper-semicontinuous
+version of the elementary Dini argument; closed balls, rather than
+open balls, are used at this step.
+
+A finite chart cover of a compact neighborhood of $\supp T$, and
+uniform comparisons of $g,\omega$ with their coordinate Euclidean
+counterparts there, give \eqref{eq:uniform-decay}. For small $r$,
+balls contributing positive mass have centers in this fixed compact
+neighborhood. The same notation $\varepsilon(r)$ may be used for
+all $r>0$; it is bounded, because of \eqref{eq:uniform-decay}, local
+mass bounds, and $\mu(X)<\infty$.
+
+\medskip\noindent
+\emph{Scalar heat bounds.}
+Set $q_t=P_t\mu$ and $K=\supp\mu$. For all sufficiently small $t>0$,
+all $x\in X$, and all $y\in K$, the scalar heat kernel satisfies
+\begin{equation}\label{eq:Gaussian}
+ 0\leq p_t(x,y)\leq C t^{-2}
+       \exp\bigl(-d_g(x,y)^2/(Ct)\bigr).
+\end{equation}
+Indeed, the scalar Gaussian bound recorded in
+\cite[Introduction, before Proposition~1.1]{BDG}, applied using
+symmetry, has the factor $\operatorname{Vol}(B_g(y,\sqrt t))^{-1}$.
+Bounded curvature gives the required Ricci lower bound. Since the
+source point $y$ lies in the fixed compact set $K$, smoothness of
+the metric gives $\operatorname{Vol}(B_g(y,\sqrt t))\ge c_Kt^2$
+uniformly there. No global injectivity-radius bound is required.
+Dyadic annuli of
+radii $2^k\sqrt t$, together with \eqref{eq:uniform-decay}, give
+\[
+ t\|q_t\|_\infty
+ \leq C\sum_{k\geq0}4^k e^{-c4^k}
+                  \varepsilon(2^{k+1}\sqrt t)=o(1).
+\]
+Adjusting the first finitely many constants absorbs the innermost
+ball. Dominated convergence applies because $\varepsilon$ is bounded
+and tends to zero at zero. Sub-Markovianity gives
+$\|q_t\|_1\leq\mu(X)$, and therefore
+\begin{equation}\label{eq:heat-L2}
+ t\|q_t\|_2^2
+ \leq t\|q_t\|_\infty\|q_t\|_1=o(1).
+\end{equation}
+
+\medskip\noindent
+\emph{Heat regularization and its positivity defect.}
+The Weitzenb\"ock formula on real $(1,1)$-forms is
+$\Delta_2=\nabla^*\nabla+\mathcal R$, with
+$\|\mathcal R\|_\infty\leq C$ under the curvature bound.
+Let $Q_t=e^{-t\nabla^*\nabla}$. The metric connection preserves
+the real $(1,1)$ bundle and its positive Hermitian cone. Its heat
+semigroup is an average of parallel transports, so $Q_t$ preserves
+this cone and satisfies $|Q_t B|\leq P_t|B|$.
+The Ricci lower bound ensures stochastic completeness, as required
+for the global probabilistic representation.
+The parallel-transport representation and covariant Schr\"odinger
+semigroup domination are given in \cite[Lemmas~3.6--3.7]{BDG}
+(the connection-heat case has zero potential); in particular,
+\[
+ |H_t B|\leq e^{Ct}P_t|B|.
+\]
+These assertions extend to finite compactly supported
+measure-valued initial forms, by kernel domination or positive
+smooth approximation in local unitary frames.
+
+Define $A_t=H_tT$. It is smooth, real, and of type $(1,1)$, converges
+to $T$ as a current as $t\downarrow0$, and satisfies
+\[
+ |A_t|\leq Ce^{Ct}q_t.
+\]
+Duhamel's formula and the scalar semigroup identity yield
+\begin{align*}
+ |A_t-Q_tT|
+ &\leq \int_0^t P_{t-s}(|\mathcal R A_s|)\,ds\\
+ &\leq C\int_0^t e^{Cs}P_{t-s}(P_s\mu)\,ds
+ \leq Cte^{Ct}q_t.
+\end{align*}
+Consequently, for $0<t\leq1$,
+\begin{equation}\label{eq:positivity-defect}
+ |A_t|\leq Cq_t,
+ \qquad A_t\geq-Ctq_t\,\omega.
+\end{equation}
+Local parabolic regularity supplies smoothness without uniform
+bounds on derivatives of curvature. The Gaussian estimates and
+$q_t\in L^1\cap L^\infty$ imply
+$A_t\in L^2$.
+
+The complete K\"ahler identities give
+$\Delta_d=2\Delta_\partial=2\Delta_{\bar\partial}$ and the
+commutation of Hodge heat with $\partial$, $\bar\partial$, and
+$\D$; see \cite[\S12]{DemaillyHodge}.
+These are identities for the complete self-adjoint realizations,
+initially on smooth compactly supported test forms and then by
+closure. Hodge heat also commutes with the Hodge star, so its
+self-adjointness gives symmetry for the wedge pairing.
+The identities apply to compactly supported currents by transposition.
+More explicitly, for $\phi\in C_c^\infty(X)$,
+\[
+ \langle A_t,\D\phi\rangle
+ =\langle T,H_t\D\phi\rangle
+ =\langle T,\D P_t\phi\rangle=0.
+\]
+In the last equality, $P_t\phi$ may be multiplied by a cutoff equal
+to one on a neighborhood of $\supp T$, so the distributional
+equation $\D T=0$ applies. Thus $\D A_t=0$.
+
+\medskip\noindent
+\emph{Vanishing of the primitive defect.}
+At each point, let $\lambda_1,\lambda_2$ be the Hermitian eigenvalues
+of $A_t$ relative to $\omega$. By \eqref{eq:positivity-defect},
+$|\lambda_j|\leq Cq_t$ and $\lambda_j\geq-Ctq_t$. Hence
+\[
+ A_t^2=2\lambda_1\lambda_2\,dV
+             \geq-Ctq_t^2\,dV.
+\]
+Apply Lemma~\ref{lem:L2-defect} to $A_t$, writing
+$A_t=\eta_t+\beta_t$ with $d\eta_t=0$ and
+\[
+ -\|\beta_t\|_2^2=\int_X A_t^2
+          \geq-Ct\|q_t\|_2^2=o(1).
+\]
+Therefore $\|\beta_t\|_2\to0$. Since $dA_t=d\beta_t$, testing
+against a compactly supported smooth form shows $dA_t\to0$ as a
+distribution. But $A_t\to T$ as currents, and consequently $dT=0$.
+\end{proof}
+
+\begin{remark}[Scope of this deduction]
+The argument establishes closedness under the displayed metric
+hypotheses. It neither constructs such a bounded-curvature complete
+K\"ahler metric from a continuous psh exhaustion nor constructs a
+smooth psh exhaustion from the resulting closed current. A further
+argument that produces functions separating whole exhaustion levels
+would still be required. The proof does not assume a noncompact
+$dd^c$ lemma, a bounded Green operator, closed range of the scalar
+Laplacian, or an extension of the compact DNS cohomology decomposition.
+\end{remark}
+
+
+% End bounded-geometry
+
+
+\section{A further conclusion with a compact ambient surface}
+The following deduction uses the full DNS mixed density formula, not a claim that $\ddc$-closed currents are automatically closed.
+
+\begin{proposition}\label{prop:disjoint}
+Let $(S,\omega)$ be a compact K\"ahler surface. Suppose $T_1,T_2$ are positive $\ddc$-closed $(1,1)$-currents of $\omega$-mass one, with disjoint supports and zero Lelong numbers everywhere. Then
+\[
+ dT_1=dT_2=0,\qquad [T_1]=[T_2],\qquad [T_1]^2=0.
+\]
+Their common class is nef.
+\end{proposition}
+\begin{proof}
+Use the decomposition of \cite[\S2.1 and Lemma~B.2]{DNS}
+\[
+ T_j=\Omega_j+\partial R_j+\bar\partial\overline{R_j}
+       +i\partial\bar\partial u_j,
+ \qquad \alpha_j=[\Omega_j].
+\]
+Write $U_j=\bar\partial R_j$, an $L^2$ $(0,2)$-form, and use the positive Hermitian pairing
+$\langle U,V\rangle=\int_SU\wedge\overline V$.
+Theorem~2.2 of \cite{DNS} associates nonnegative self-density masses $m_{jj}$ and gives
+\[
+ \alpha_j^2=m_{jj}+2\|U_j\|^2.
+\]
+The mixed tangent current is zero because the supports are disjoint. Its mass formula is therefore
+\[
+ \alpha_1\cdot\alpha_2=2\operatorname{Re}\langle U_1,U_2\rangle.
+\]
+All mass-formula hypotheses hold, since both positive-Lelong-number loci are empty. Subtraction yields
+\[
+ (\alpha_1-\alpha_2)^2
+   =m_{11}+m_{22}+2\|U_1-U_2\|^2\ge0.
+\]
+Equal masses make $\alpha_1-\alpha_2$ primitive. Hodge index makes its square nonpositive, with equality only for the zero class. Hence
+$\alpha_1=\alpha_2$, $m_{11}=m_{22}=0$, and $U_1=U_2$.
+Differentiating the decompositions now gives $dT_1=dT_2$.
+These two distributions have disjoint supports, so each is zero.
+Closedness makes the energy terms zero by the criterion following (B.4) of \cite{DNS}, hence $\alpha_j^2=0$. Nefness follows from its Corollary~2.4.
+\end{proof}
+
+\begin{corollary}\label{cor:domain}
+Let $X\subset S$ be a continuously weakly complete noncompact domain in a compact K\"ahler surface. If $X$ is not a modification of a Stein space, every positive $\ddc$-closed current compactly supported in $X$ with zero Lelong numbers is closed. All such nonzero currents, normalized to mass one, represent one nef isotropic class $\alpha_X$.
+\end{corollary}
+\begin{proof}
+Pair any given current with the current of Proposition~\ref{prop:averaging} in a sufficiently high disjoint shell. Proposition~\ref{prop:disjoint} applies. Compare two arbitrary normalized currents using a third current supported beyond both.
+\end{proof}
+
+\section{Why closedness does not finish the exhaustion problem}
+\subsection*{A global $\partial\bar\partial$ lemma cannot be assumed}
+There is an elementary failure even on a surface already possessing a smooth psh exhaustion. Let
+$X=E\times\mathbb C$, where $E=\mathbb C/\Lambda$, and let $dw$ denote its invariant holomorphic form. With $z$ the coordinate on $\mathbb C$, put
+\[
+ \alpha=d\,\operatorname{Re}(z\,d\bar w)
+        =\operatorname{Re}(dz\wedge d\bar w).
+\]
+This is a real, smooth, $d$-exact $(1,1)$-form. It is not $\D$-exact. If $\D u=\alpha$ distributionally, taking the trace and applying elliptic regularity makes $u$ smooth. Its restriction to each compact fiber $E\times\{z\}$ is harmonic and hence constant. Thus $u$ is independent of $w$, contradicting the nonzero mixed component of $\alpha$.
+This example has noncompact support: it disproves the unrestricted replacement of the compact $\partial\bar\partial$ lemma, not a specially formulated statement for compactly supported shell currents.
+
+\subsection*{Potentials of two shell currents need not separate levels}
+Even in a compact ambient surface, the potential supplied by equality of classes need not distinguish entire exhaustion levels. Take $S=E\times\mathbb P^1$, $X=E\times\mathbb C$, and $\rho=|z|^2$.
+Let $\mu_0,\mu_3$ be smooth radial probability measures supported in very small disks centered at $0$ and $3$, respectively. Their pullbacks $T_0,T_3$ are positive closed currents in ordered, disjoint $\rho$-bands, with smooth coefficients and identical cohomology classes.
+Up to a positive factor and an additive constant, a potential $f$ for $T_0-T_3$ agrees outside those disks with
+\[
+ f(z)=\log|z|-\log|z-3|.
+\]
+The equality follows from the circular mean-value formula for the logarithmic kernel. Nevertheless,
+\[
+ \max_{|z|=1}f(z)=\log(1/2)
+ \quad\text{and}\quad
+ \min_{|z|=2}f(z)=\log(2/5)<\log(1/2).
+\]
+No single threshold separates these two complete levels in the expected order. This is not a counterexample to regularization; it shows why a choice of currents with additional separation properties is needed.
+
+\subsection*{The remaining steps}
+For an arbitrary $X$, Proposition~\ref{prop:averaging} supplies singular currents and the metric construction supplies completeness and infinite volume. A global curvature bound has not been obtained from these hypotheses, so the heat argument does not yet give general closedness. Nor would closedness alone supply a proper smooth psh function: a global potential or end-separation construction is still required.
+
+One precise sufficient target is a cofinal nested sequence of compact sets $K_n$ and smooth psh functions $v_n\ge0$ on $X$ such that $v_n$ vanishes near $K_n$ and $v_n\ge1$ on $X\setminus K_{n+1}$. Then
+$\sum_n v_n$ is locally finite, smooth, psh, and exhaustive. Indeed, outside $K_{N+1}$ its first $N$ summands are at least one. This criterion describes the missing construction. The following sections sharpen its dual formulation and establish it under an additional Green-kernel hypothesis.
+
+Classifying continuous exhaustion levels as smooth Levi-flat hypersurfaces would also be unjustified. The relevant structural results in \cite[Theorem~1.1]{BM} require regular levels and $C^2$ or $C^4$ regularity; their introduction explicitly distinguishes the minimal kernels for different regularities.
+
+The unrestricted implication remains unproved. The new separation results below give a conditional theorem and isolate the precise additional input needed for a general argument; they do not extend the manuscript's compact-divisor theorem to all K\"ahler surfaces.
+
+
+\section{The exact separation problem and its duality gap}\label{sec:separation-duality}
+
+% Begin separation-duality
+The following statements isolate a precise remaining problem. Except where
+K\"ahlerness is invoked for almost-psh regularization, they apply in any
+complex dimension. Put
+\[
+ \mathcal P^\infty(X)=C^\infty(X,\mathbb R)\cap\operatorname{PSH}(X),
+ \qquad
+ \widehat K_\infty=
+ \{p\in X:u(p)\le\sup_Ku\ \text{for every }u\in\mathcal P^\infty(X)\}.
+\]
+For a nonempty compact set $K$, let $J_p^\infty(K)$ consist of the
+probability measures $\mu$ supported on $K$ such that
+$u(p)\le\int_Ku\,d\mu$ for every $u\in\mathcal P^\infty(X)$.
+These measures test the smooth cone only.
+
+\begin{proposition}[Exact separator criterion]\label{prop:separator-criterion}
+Let $K,L\subset X$ be disjoint nonempty compact sets. The following are
+equivalent:
+\begin{enumerate}
+\item There is $u\in\mathcal P^\infty(X)$ with
+$\sup_Ku<\inf_Lu$.
+\item $L\cap\widehat K_\infty=\varnothing$.
+\item $J_p^\infty(K)=\varnothing$ for every $p\in L$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+If each $p\in L$ lies outside the hull, choose a smooth psh function,
+after positive affine rescaling, smaller than $-2$ on $K$ and larger
+than $3$ near $p$. Finitely many such neighborhoods cover $L$.
+A regularized maximum of the corresponding functions, with sufficiently
+small regularization parameter, is a separator. The converse is immediate.
+
+For completeness, membership in the hull implies the existence of one
+Jensen measure satisfying all the inequalities simultaneously. For any
+finite list $u_1,\ldots,u_r\in\mathcal P^\infty(X)$, the compact convex set
+\[
+ \left\{\left(\int_Ku_i\,d\mu-u_i(p)\right)_{i=1}^r:
+                   \mu\in\operatorname{Prob}(K)\right\}
+\]
+must meet $\mathbb R_+^r$. Otherwise finite-dimensional separation gives
+nonnegative coefficients $c_i$, not all zero, with
+$\sup_K\sum_i c_i u_i<\sum_i c_i u_i(p)$, contradicting the hull condition.
+Compactness of $\operatorname{Prob}(K)$ and the finite intersection
+property now give the required measure. The reverse implication follows
+by bounding $\int_Ku\,d\mu$ by $\sup_Ku$.
+\end{proof}
+
+\begin{proposition}[From level separators to global barriers]
+\label{prop:separator-barriers}
+Let $\rho$ be a continuous psh exhaustion. Set $K_a=\{\rho\le a\}$ and
+$L_b=\{\rho=b\}$, where $b>a$ and both sets are nonempty. A smooth psh
+separator for $K_a,L_b$ produces a nonnegative smooth psh function $v$
+which vanishes near $K_a$ and satisfies $v\ge1$ on $\{\rho\ge b\}$.
+Consequently, $X$ has a smooth psh exhaustion if and only if, for every
+sufficiently large $a$, some $b>a$ satisfies
+$J_p^\infty(K_a)=\varnothing$ for every $p\in L_b$.
+\end{proposition}
+\begin{proof}
+Normalize the separator so that $u<-2$ on $K_a$ and $u>3$ on $L_b$.
+Let $M$ be a smooth regularized maximum which is at least the maximum
+and agrees with it whenever the two arguments differ by more than $1$.
+Define
+\[
+ w=\begin{cases}
+      u,&\rho\le b,\\
+      M(u,1),&\rho>b.
+    \end{cases}
+\]
+The two formulas coincide on an open neighborhood of $L_b$ because
+$u>3$ there. Thus $w$ is globally smooth and psh, despite the possible
+nonsmoothness of $L_b$, and $w\ge1$ outside $\{\rho<b\}$.
+Compose with a smooth convex nondecreasing function $\chi$ which is zero
+on $(-\infty,0]$ and at least $1$ on $[1,\infty)$ to obtain $v$.
+
+Apply this construction to $a_j\to\infty$. The resulting barriers $v_j$
+vanish near $K_{a_j}$, so $\sum_jv_j$ is locally finite, smooth and psh.
+For every $N$ it is at least $N$ outside the compact union of the first
+$N$ corresponding sublevel sets; hence it is exhaustive. Conversely,
+a smooth psh exhaustion separates $K_a$ from $L_b$ once $b$ is large
+enough, by compactness of its sublevel sets.
+\end{proof}
+
+In particular, failure of smooth exhaustion forces some compact sublevel
+$K_a$ to have $\widehat K_{a,\infty}$ meeting every level $L_b$, $b>a$.
+If $J_p^0(K)$ denotes Jensen measures testing all continuous psh functions,
+then $J_p^0(K)\subset J_p^\infty(K)$. For $p\in L_b$ and $K=K_a$,
+the function $\rho$ proves $J_p^0(K)=\varnothing$. Replacing
+$J_p^\infty$ by $J_p^0$ without further proof would assume the missing
+regularization property.
+
+\begin{theorem}[Bounded-mass Green-current duality]
+\label{thm:bounded-mass-duality}
+Fix a Hermitian form $\omega$, a compact set $F\supset K\cup\{p\}$,
+and $m\ge0$. For $u\in C^\infty(X,\mathbb R)$ put
+\[
+ q_F(u)=\max\left\{0,-\inf_{x\in F}
+              \lambda_{\min}(\D u;\omega)(x)\right\}.
+\]
+There exist $\mu\in\operatorname{Prob}(K)$ and a positive current $T$
+of bidimension $(1,1)$ such that
+\[
+ \supp T\subset F,\qquad \langle T,\omega\rangle\le m,
+ \qquad \D T=\mu-\delta_p
+\]
+if and only if
+\begin{equation}\label{eq:quantitative-jensen}
+ u(p)-\sup_Ku\le m q_F(u)
+ \qquad\text{for every }u\in C^\infty(X,\mathbb R).
+\end{equation}
+Equivalently,
+\[
+ \sup\{u(p)-\sup_Ku:\D u\ge-\omega\text{ on }F\}\le m.
+\]
+\end{theorem}
+\begin{proof}
+Positive currents supported on $F$ with mass at most $m$ form a compact
+convex set in the weak topology. Therefore
+\[
+ \mathcal A=\{\mu-\D T:
+     \mu\in\operatorname{Prob}(K),\ T\ge0,
+     \ \supp T\subset F,\ \langle T,\omega\rangle\le m\}
+\]
+is weakly compact and convex in the space of compactly supported
+distributions. Its support function, evaluated at a smooth real $u$, is
+\[
+ \sup_{\sigma\in\mathcal A}\langle\sigma,u\rangle
+       =\sup_Ku+m q_F(u).
+\]
+Indeed, the current term is maximized either by $T=0$, or by placing
+mass $m$ at a point and a complex tangent line attaining the most
+negative eigenvalue of $\D u$ on $F$. Hahn--Banach separation now gives
+$\delta_p\in\mathcal A$ exactly when
+\eqref{eq:quantitative-jensen} holds. The final formulation follows by
+scaling when $q_F(u)>0$; if $q_F(u)=0$, scaling by arbitrarily large
+constants forces $u(p)\le\sup_Ku$.
+\end{proof}
+
+\begin{proposition}[Continuous psh functions exclude exact Green currents]
+\label{prop:continuous-green-exclusion}
+Suppose $X$ is K\"ahler and $\rho\in C^0(X)\cap\operatorname{PSH}(X)$
+satisfies $\rho(p)>\sup_K\rho$. Then no compactly supported positive
+current satisfies $\D T=\mu-\delta_p$ with
+$\mu\in\operatorname{Prob}(K)$.
+\end{proposition}
+\begin{proof}
+By \cite[Corollary~9.3]{Demailly82} and Dini's theorem, on each fixed
+compact set $F$ there are smooth $\rho_j$ converging uniformly to $\rho$
+with $\D\rho_j\ge-\varepsilon_j\omega$ on $F$, where
+$\varepsilon_j\to0$. If $F$ contains $\supp T\cup K\cup\{p\}$, then
+\[
+ \int_K\rho_j\,d\mu-\rho_j(p)
+   =\langle T,\D\rho_j\rangle
+   \ge-\varepsilon_j\langle T,\omega\rangle.
+\]
+Passing to the limit contradicts the assumed strict gap. Equivalently,
+the supremum in Theorem~\ref{thm:bounded-mass-duality} is infinite:
+divide suitable approximants by any positive Levi-error bounds tending
+to zero.
+\end{proof}
+
+\paragraph{What unrestricted Hahn--Banach actually gives.}
+Let $E=C^\infty(X,\mathbb R)$ and let $E'$ be its continuous dual.
+Set
+\[
+ \mathcal C=\{\D T:T\ge0\text{ of bidimension }(1,1),
+                                  \ \supp T\Subset X\}.
+\]
+The polar of $\mathcal C$ is exactly $\mathcal P^\infty(X)$: point masses
+in individual complex tangent directions test positivity of the Levi
+form. The bipolar theorem therefore gives only
+\[
+ (\mathcal P^\infty(X))^\circ
+      =\overline{\mathcal C}^{\,\sigma(E',E)},
+\]
+where the polar means nonnegative pairing. Thus a smooth Jensen measure
+gives $\mu-\delta_p$ in this closure, not necessarily in $\mathcal C$.
+The closure may require nets; neither a common compact support nor a
+mass bound for representing currents follows from this assertion.
+Harvey--Lawson's exact Green-current theorem assumes strict convexity
+\cite[Theorem~3.8]{HL}. Their polar calculation and closedness proof
+\cite[Lemmas~3.10--3.11]{HL} separate these two steps explicitly.
+The latter uses a strictly psh $f$ to estimate
+$\varepsilon\langle T_j,\omega\rangle
+ \le\langle\D T_j,f\rangle$ on a common compact support.
+That coercive estimate is unavailable here.
+
+Even if a sequence $T_j$ has a common compact support and
+$\D T_j\to\mu-\delta_p$ distributionally, its masses must tend to
+infinity by Proposition~\ref{prop:continuous-green-exclusion} and
+compactness. Normalizing the masses yields, after passage to a
+subsequence, a positive $\D$-closed current of mass one. Its Lelong
+numbers need not vanish: these supports are not disjoint exhaustion
+levels. Even a proof that this limiting current is $d$-closed would not
+restore the lost nonzero source equation.
+
+There is a further useful restriction. Such a sequence cannot have
+$\D T_j$ equal to signed measures of uniformly bounded total variation.
+Under that bound, distributional convergence on a common compact set
+implies weak convergence against continuous functions. Choose the
+almost-psh approximation $r_j$ of $\rho$ separately for each $T_j$, so
+that $r_j\to\rho$ uniformly there and
+\[
+ \D r_j\ge-\eta_j\omega,
+ \qquad \eta_j(1+\langle T_j,\omega\rangle)\longrightarrow0.
+\]
+Then $\langle\D T_j,r_j\rangle\ge-o(1)$, while the measure bound makes
+the left side converge to $\int_K\rho\,d\mu-\rho(p)<0$.
+The weak dual closure therefore loses essential control of the source
+distributions as well as the current masses.
+
+\paragraph{Why subtracting the limiting current is unjustified.}
+The elementary positive-semidefinite matrix model
+\[
+ A_n=\begin{pmatrix}n&1\\1&1/n\end{pmatrix},\qquad
+ L(A)=(A_{22},\operatorname{Re}A_{12})
+\]
+has $A_n\ge0$ and $L(A_n)\to(0,1)$, but $(0,1)$ is not in the image
+of the positive cone: positivity and $A_{22}=0$ force $A_{12}=0$.
+Meanwhile $A_n/n\to S=\operatorname{diag}(1,0)$ and $L(S)=0$.
+No positive multiple of this kernel element can be subtracted:
+$\det(A_n-cS)=-c/n<0$ for every $c>0$.
+This is a functional-analytic illustration, not a geometric
+counterexample. It shows why closedness of normalized Levi limits alone
+does not prove closedness of the image cone. A remaining sufficient
+geometric statement would be the restricted closed-range property
+\[
+ \overline{\mathcal C}\cap
+   \{\mu-\delta_p:\mu\in\operatorname{Prob}(K)\}
+ \subset\mathcal C
+\]
+for compact sublevels $K$ and points $p$ on suitable outer levels,
+with closure in the topology specified above. Alternatively, one needs
+a quantitative estimate such as \eqref{eq:quantitative-jensen} for the
+smooth Jensen obstructions. Neither assertion is established here.
+
+% End separation-duality
+
+
+\section{What an end potential must accomplish}\label{sec:separation-envelope}
+
+% Begin separation-envelope
+\begin{lemma}[A pluriharmonic separator at infinity]
+\label{lem:interval-separator}
+Let $X$ be a connected noncompact complex manifold, of any dimension,
+and let $K\Subset X$ be compact. Suppose $u:X\setminus K\to I$ is
+pluriharmonic, where $I=(a,b)$ is an open interval whose endpoints may
+be infinite. Assume that $u$ is proper at infinity into $I$: for every
+compact interval $J\Subset I$, the set
+\[
+ \{x\in X\setminus K:u(x)\in J\}
+\]
+is relatively compact in $X$. Then $X$ admits a smooth psh exhaustion.
+No extension of $u$ across $K$ is required.
+\end{lemma}
+
+\begin{proof}
+Choose a smooth convex function $F:I\to\mathbb R$ tending to $+\infty$
+at both endpoints of $I$. For example, take $t^2$ and subtract
+$\log(t-a)$ if $a$ is finite and $\log(b-t)$ if $b$ is finite.
+Thus $F$ has compact sublevel sets in $I$. The function $v=F(u)$
+is smooth and psh on $X\setminus K$, because
+\[
+ \D v=F''(u)i\partial u\wedge\bar\partial u\geq0.
+\]
+It tends to $+\infty$ along every sequence escaping all compact
+subsets of $X$, by the hypothesis on $u$.
+
+Take a relatively compact smooth domain $D$ with $K\Subset D$.
+A sufficiently small closed collar of $\partial D$ is disjoint from
+$K$, and $v$ is bounded there. Choose $C$ larger than this bound,
+and a smooth convex nondecreasing function $q:\mathbb R\to[0,\infty)$
+which vanishes on $(-\infty,C]$ and equals $t$ plus a constant for
+$t\geq C+1$. Define
+\[
+ \Phi(x)=
+ \begin{cases}
+  0,&x\in D,\\
+  q(v(x)),&x\in X\setminus D.
+ \end{cases}
+\]
+Both definitions are identically zero on a neighborhood of
+$\partial D$. Hence $\Phi$ is globally smooth and psh, and its
+sublevel sets are compact.
+\end{proof}
+
+In particular, if a global real distribution satisfies $\D u=T$
+with $\supp T\Subset X$, then $u$ is smooth pluriharmonic off
+$\supp T$ by elliptic regularity. Lemma~\ref{lem:interval-separator}
+applies if the additional interval-separation condition holds.
+Existence of a potential alone does not establish that condition.
+
+\begin{remark}[Zero Monge--Amp\`ere measure in the residual case]
+\label{rem:flat-envelope}
+Let $B$ be a compact Riemann surface and $L\in\operatorname{Pic}^0(B)$
+a non-torsion unitary flat line bundle. On $Y=L\setminus B$, put
+$h=\log|v|$ in unitary flat fiber coordinates. Constant unitary
+transition functions make $h$ a global smooth pluriharmonic function.
+Each level of $h$ is compact, and $h:Y\to\mathbb R$ is proper.
+The flat connection and a K\"ahler form on $B$ give a K\"ahler
+metric on $Y$. Moreover $\mathcal O(Y)=\mathbb C$: the Laurent
+coefficients of a holomorphic function are sections of $L^{-n}$,
+which have no nonzero sections for $n\ne0$, while the zeroth
+coefficient is constant on $B$.
+
+The smooth psh exhaustion $\rho=h^2$ satisfies
+\[
+ (\D\rho)^2=0,
+ \qquad \D\rho=2i\partial h\wedge\bar\partial h\ne0.
+\]
+More precisely, for $0<c<d$, on the relatively compact collar
+$A=\{c<h<d\}$ the two functions
+\[
+ u_1=\frac{h^2-c^2}{d^2-c^2},
+ \qquad u_2=\frac{h-c}{d-c}
+\]
+are smooth psh solutions of
+\[
+ (\D u)^2=0,\qquad u|_{\{h=c\}}=0,
+ \qquad u|_{\{h=d\}}=1,
+\]
+but $u_1<u_2$ in $A$. Thus the homogeneous Monge--Amp\`ere
+Dirichlet equation is not unique on these collars, even when
+$\mathcal O(Y)=\mathbb C$; its vanishing does not imply
+pluriharmonicity.
+
+In this particular flat model the upper psh envelope is $u_2$.
+Indeed, infinite unitary holonomy is dense in the circle, so every
+leaf of the flat foliation is dense in its compact $h$-level.
+A psh function on $A$ attains its maximum on such a level;
+the maximum principle on the maximizing leaf and upper
+semicontinuity make it constant on that whole level. It is
+therefore a convex function of $h$, and lies below the affine
+secant of its boundary bounds. This argument uses the flat
+foliation and does not prove an envelope theorem for general
+continuously exhausted K\"ahler surfaces.
+\end{remark}
+
+\begin{remark}[A bounded potential can occur for every normalization]
+\label{rem:bounded-flat-potential}
+In the same construction restrict to $X=\{a<h<b\}$ with finite
+$a<b$. We still have $\mathcal O(X)=\mathbb C$, and
+\[
+ -\log(h-a)-\log(b-h)
+\]
+is a smooth psh exhaustion. Choose a smooth convex $\chi$ on
+$\mathbb R$ with $\chi''\not\equiv0$ supported in a compact
+subinterval of $(a,b)$. Then $T=\D\chi(h)$ is nonzero, smooth,
+positive, closed, compactly supported, and has zero Lelong numbers.
+Its global potential $\chi(h)$ is bounded. Every global
+pluriharmonic function on $X$ is affine in $h$: the compact-level
+maximum argument above makes it a function of $h$, and
+pluriharmonicity makes that function affine. Consequently every
+distributional global potential of $T$ is bounded, since the
+difference of two potentials is pluriharmonic. Properness as a
+map to all of $\mathbb R$ is therefore too strong a desired
+normalization. The useful criterion is separation into an open
+interval followed by convex blow-up at its endpoints, as in
+Lemma~\ref{lem:interval-separator}.
+\end{remark}
+
+\begin{remark}[What annular envelopes and truncations do not supply]
+Even an actual psh upper envelope need not be pluriharmonic in
+dimension two. On $r<|z|<R$ in $\mathbb C^2$, the upper envelope
+with constant inner and outer bounds $0,1$ is
+\[
+ u(z)=\frac{\log|z|-\log r}{\log R-\log r}.
+\]
+Restricting competitors to the complex lines through the origin
+proves the envelope assertion by the subharmonic maximum
+principle on planar annuli. Its Levi form has rank one everywhere:
+$(\D u)^2=0$ but $\D u\ne0$. This is a counterexample to the
+unqualified local inference, not a counterexample to a possible
+additional rigidity theorem under $\mathcal O(X)=\mathbb C$.
+
+Ordinary harmonic capacitary selection does not automatically
+improve matters. The real harmonic function with the same
+boundary values in this four-dimensional annulus is
+\[
+ H(z)=\frac{r^{-2}-|z|^{-2}}{r^{-2}-R^{-2}}.
+\]
+Its complex Hessian has one positive and one negative eigenvalue,
+so it is not psh. Showing that a harmonic separator is psh would
+indeed make it pluriharmonic, but that is an additional assertion.
+
+Finally, even in the smooth case,
+\[
+ \D\chi(\rho)=\chi'(\rho)\D\rho
+       +\chi''(\rho)i\partial\rho\wedge\bar\partial\rho.
+\]
+Support of $\chi''$ in a bounded interval does not make this
+current supported on the corresponding shell: the first term
+persists on the outer end. A nonconstant increasing convex
+$\chi$ cannot become constant there. Cutting off the upper
+slope instead generally destroys positivity. These operations
+therefore do not furnish the required positive shell current
+with a separating potential.
+\end{remark}
+
+% End separation-envelope
+
+
+\section{Separation by a canonical Green potential}\label{sec:separation-green}
+This section proves a conditional theorem without a compactification.
+The metric and Green hypotheses are additional assumptions; they have
+not been derived from a continuous psh exhaustion.
+The use of scalar and Hodge heat to solve a Poincar\'e--Lelong equation
+has a precedent in Ni--Tam \cite[\S2]{NiTam}. Here the surface trace
+isometry and the vanishing primitive defect provide the required
+large-time decay for the particular compactly supported current.
+
+% Begin separation-green
+\begin{theorem}\label{thm:green-separation}
+Let $(X,\omega)$ be a connected complete K\"ahler surface of infinite
+volume and uniformly bounded Riemannian curvature. Suppose its minimal positive scalar Green
+kernel exists and is regular at infinity: for one (and hence every)
+pole $o$,
+\[
+ G(x,o)\longrightarrow0\quad\text{as }x\to\infty.
+\]
+If there is a nonzero positive $(1,1)$-current $T$ with compact
+support such that $\D T=0$ and $\nu(T,x)=0$ at every point, then
+$X$ admits a smooth plurisubharmonic exhaustion.
+
+More precisely, for $\mu=T\wedge\omega$, the negative Green
+potential of $\mu$, with the normalization specified below, is a
+global psh potential of $T$, is smooth and pluriharmonic off
+$\supp T$, and tends uniformly to zero at infinity.
+\end{theorem}
+
+\paragraph{Conventions.}
+Write $\D=i\partial\bar\partial$, $dV=\omega^2/2$, and let
+$\Lambda$ be contraction with $\omega$. Let $\Delta_k$ denote the
+nonnegative Hodge Laplacian on $k$-forms, $P_t=e^{-t\Delta_0}$, and
+$H_t=e^{-t\Delta_2}$. Set $L=\Lambda\D$. There is a fixed
+$\kappa>0$ such that
+\begin{equation}\label{eq:normalization}
+ \Delta_0=-\kappa L.
+\end{equation}
+For the usual compatible conventions $\kappa=2$, but retaining
+$\kappa$ avoids dependence on this convention. The same K\"ahler
+identity gives, for every closed real $(1,1)$-form $B$,
+\begin{equation}\label{eq:closed-hodge}
+ \Delta_2 B=-\kappa\D\Lambda B.
+\end{equation}
+This can also be checked locally by writing $B=\D b$ and using
+commutation of $\D$ with the Laplacian.
+
+\paragraph{The trace-lifting isometry and its intertwining property.}
+The scalar $L^2$ kernel vanishes on a connected complete
+infinite-volume manifold: the complete-metric integration-by-parts
+theorem makes an $L^2$ harmonic function constant, and infinite
+volume makes that constant zero. Essential self-adjointness of the
+scalar Laplacian on $C_c^\infty$ therefore gives density of
+$L(C_c^\infty)$ in real $L^2$.
+
+For real $u\in C_c^\infty(X)$, the surface linear-algebra identity
+and Stokes' theorem give
+\begin{equation}\label{eq:isometry}
+ \int_X(\D u)^2=0,
+ \qquad \|\D u\|_2=\|Lu\|_2.
+\end{equation}
+Indeed, for real $(1,1)$-forms $B$,
+$B^2=((\Lambda B)^2-|B|^2)dV$.
+Consequently there is a well-defined linear isometry
+\[
+ R:L^2(X,\mathbb R)\longrightarrow
+                   L^2(X,\Lambda^{1,1}_{\mathbb R})
+\]
+given by $Rf=\lim_j\D u_j$ whenever $Lu_j\to f$ in $L^2$.
+It satisfies
+\[
+ d(Rf)=0,\qquad \Lambda Rf=f,
+ \qquad \int_X(Rf)^2=0.
+\]
+
+For every $h>0$, this isometry intertwines heat:
+\begin{equation}\label{eq:intertwining}
+ H_h Rf=R P_h f.
+\end{equation}
+To justify this without assuming a bounded Green operator, first
+take $f=Lu$ for $u\in C_c^\infty$. K\"ahler identities give
+$H_h\D u=\D P_hu$, while $LP_hu=P_hLu$.
+The function $P_hu$ lies in the operator domain of $L$.
+Since $C_c^\infty$ is a core, approximate $P_hu$ in the graph norm
+of $L$ by compactly supported smooth functions. Equation
+\eqref{eq:isometry} then shows that
+$\D P_hu=RLP_hu=RP_hLu$. Finally use density of $L(C_c^\infty)$
+and boundedness of both heat operators and $R$ to obtain
+\eqref{eq:intertwining} for all $f\in L^2$.
+The complete-metric operator facts used here are in
+\cite[\S12]{DemaillyHodge}.
+
+For every real $L^2$ $(1,1)$-form $A$ satisfying $\D A=0$, one has
+the primitive-defect identity
+\begin{equation}\label{eq:defect}
+ \beta:=A-R\Lambda A,
+ \qquad
+ \int_X A^2=-\|\beta\|_2^2.
+\end{equation}
+In fact, $\Lambda\beta=0$, and testing $\D A=0$ against the
+functions approximating $\Lambda A$ gives
+$\int_XA\wedge R\Lambda A=0$. Together with
+$\int_X(R\Lambda A)^2=0$, this proves \eqref{eq:defect}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:green-separation}]
+Put $A_t=H_tT$ and $q_t=P_t\mu$. Heat acts on the compactly
+supported measure-valued form $T$ by its smooth kernel. K\"ahler
+commutation, by transposition, gives
+\[
+ \D A_t=0,\qquad \Lambda A_t=q_t.
+\]
+The second identity means equality of functions after the scalar
+distribution $\Lambda T$ is identified with $\mu$ relative to $dV$.
+
+We recall the short-time estimate established in the accompanying
+proof of Proposition~\ref{prop:bounded-geometry-closedness}. Vanishing Lelong numbers and
+compact support give
+$\sup_x\mu(B(x,r))=o(r^2)$ uniformly. Scalar Gaussian heat bounds
+then imply
+\[
+ t\|q_t\|_2^2=o(1).
+\]
+The Weitzenb\"ock formula, connection-heat cone preservation, and
+Duhamel's formula give
+\[
+ |A_t|\leq Cq_t,
+ \qquad A_t\geq-Ctq_t\,\omega\qquad(0<t\leq1).
+\]
+Hence $A_t\in L^2$ and
+$\int_XA_t^2\geq-Ct\|q_t\|_2^2=o(1)$.
+For the underlying semigroup domination, Gaussian bounds, and
+parallel-transport formula, see
+\cite[Introduction and Lemmas~3.6--3.7]{BDG}; the full deduction for measure-valued $T$ appears in the proof of Proposition~\ref{prop:bounded-geometry-closedness}.
+
+Define $\beta_t=A_t-Rq_t$. Equation~\eqref{eq:defect} implies
+\begin{equation}\label{eq:small-defect}
+ \|\beta_t\|_2\longrightarrow0\quad(t\downarrow0).
+\end{equation}
+The important additional observation is that this defect vanishes
+at every positive time. If $0<s<t$, the semigroup identities and
+\eqref{eq:intertwining} give
+\[
+ \beta_t=H_{t-s}A_s-RP_{t-s}q_s
+         =H_{t-s}(A_s-Rq_s)=H_{t-s}\beta_s.
+\]
+The Hodge heat semigroup is an $L^2$ contraction. Letting $s\downarrow0$
+in this equality and using \eqref{eq:small-defect}, we obtain
+\begin{equation}\label{eq:exact-lift}
+ A_t=Rq_t\quad(t>0).
+\end{equation}
+Thus $A_t$ is closed for every $t>0$.
+
+Fix $s>0$. Since $q_s\in L^2$ and the scalar $L^2$ kernel is zero,
+the spectral theorem gives $P_{t-s}q_s\to0$ in $L^2$ as $t\to\infty$.
+Equation~\eqref{eq:exact-lift} and the isometry of $R$ imply
+\begin{equation}\label{eq:large-time}
+ A_t\longrightarrow0\quad\text{in }L^2\quad(t\to\infty).
+\end{equation}
+
+Because $A_t$ is closed, \eqref{eq:closed-hodge} gives
+\[
+ \frac{\partial A_t}{\partial t}
+ =-\Delta_2A_t=\kappa\D q_t.
+\]
+Integration from $\epsilon$ to $b$ yields
+\[
+ A_b-A_\epsilon
+      =\kappa\D\int_\epsilon^b P_t\mu\,dt.
+\]
+The positive Green kernel is $G(x,y)=\int_0^\infty p_t(x,y)\,dt$.
+Its potential $G\mu$ is locally integrable: the local singularity
+of $G$ is integrable against volume in the first variable, uniformly
+for its second variable in a compact set, and $\mu$ has finite
+compact support. Monotone convergence therefore applies in
+$L^1_{\rm loc}$ to the displayed time integrals. Using
+$A_\epsilon\to T$ as currents and \eqref{eq:large-time}, we conclude
+\begin{equation}\label{eq:green-potential}
+ T=\D v,\qquad v=-\kappa G\mu.
+\end{equation}
+
+Since $T\geq0$, the distribution $v$ has a psh representative.
+It agrees with the negative Green potential; this potential is
+upper semicontinuous, is strictly negative everywhere, and is not
+identically $-\infty$. It is smooth off $K=\supp T$ and
+pluriharmonic there by \eqref{eq:green-potential}.
+Regularity of the Green kernel at infinity implies $v(x)\to0$
+uniformly as $x\to\infty$. To see the required uniformity over
+the source variable, fix a compact set containing $K$ and $o$ in
+its interior. For $x$ outside a larger compact set, the Harnack
+inequality in the source variable gives
+$G(x,y)\leq C_KG(x,o)$ for all $y\in K$. Integrate against $\mu$.
+
+Choose a relatively compact neighborhood $U$ of $K$ and a number
+$c<0$ with $\sup_{\overline U}v<c$. Such a strict choice is
+possible because $v$ is strictly negative and upper semicontinuous
+on the compact set $\overline U$; possible values $-\infty$ cause
+no problem. Take a smooth convex regularized maximum $M_\delta$
+of two real variables, nondecreasing in each, equal to the larger
+variable when their difference exceeds $\delta$.
+Choose $\delta>0$ so small that
+$v<c-2\delta$ near $\overline U$ and $c+2\delta<0$.
+Then
+\[
+ w=M_\delta(v,c)
+\]
+is defined to be $c$ where $v=-\infty$; it is constant on $U$,
+smooth and psh on all of $X$, and strictly negative. It equals
+$v$ outside a sufficiently large compact set. Therefore
+\[
+ \Phi=-\log(-w)
+\]
+is a smooth psh exhaustion: the scalar function $s\mapsto-\log(-s)$
+is convex and increasing for $s<0$, and $w\to0$ at infinity.
+\end{proof}
+
+\begin{remark}[The genuine remaining restriction]
+The Green hypothesis is substantive. For example, $E\times\mathbb C$
+with $E$ compact admits no nonconstant bounded-above psh function:
+restriction to compact fibers makes such a function descend to a
+bounded-above subharmonic function on $\mathbb C$, hence it is
+constant. It therefore cannot satisfy all hypotheses of
+Theorem~\ref{thm:green-separation}, which would produce the
+nonconstant bounded-above psh function $v$ (or $w$). Nevertheless
+it has a smooth psh exhaustion. The theorem accordingly covers a
+regular hyperbolic situation and does not handle the parabolic
+case by itself.
+
+A continuous psh exhaustion can supply suitable hyperbolic
+sublevel domains (compare \cite[proof of Theorem~2.5, p.~1360]{NR}),
+but applying the theorem separately on such domains does not by
+itself provide compatible global smooth separators on their union.
+No such compatibility assertion is made here.
+
+\end{remark}
+
+
+\begin{remark}[Changing the positive source cannot repair an irregular Green end]
+For any nonzero finite positive compactly supported measure $\mu$, Harnack's
+inequality in the source variable gives positive constants $c_\mu,C_\mu$ and
+a compact set $F$ such that
+\[
+ c_\mu G(x,o)\le G\mu(x)\le C_\mu G(x,o),\qquad x\notin F.
+\]
+Indeed, put $o$ and $\supp\mu$ in a connected relatively compact domain;
+for $x$ outside a larger compact set, $y\mapsto G(x,y)$ is positive
+harmonic on that domain, and a finite Harnack chain gives uniform
+upper and lower comparisons. Integrating gives the displayed bounds.
+Thus if $G(x_j,o)$ fails to tend to zero along an escaping sequence,
+changing the compact positive source current cannot make its Green
+potential tend to zero along that sequence. The Green construction
+solves separation under a boundary condition at infinity; that condition
+cannot be manufactured merely by reweighting averaged currents.
+\end{remark}
+
+\begin{remark}[Scalar Evans potentials do not supply the missing complex positivity]
+Hansen--Netuka's theorem \cite{HN} supplies positive harmonic Evans
+potentials tending to infinity outside nonpolar compact sets on
+parabolic Riemannian manifolds. Such a potential need not be
+pluriharmonic, even on a K\"ahler surface already admitting a smooth
+psh exhaustion. For example, take the flat product $E\times\mathbb C$,
+a real nonconstant eigenfunction $\Delta_E\varphi=\lambda\varphi$
+with $\lambda>0$, and $0<\varepsilon\|\varphi\|_\infty<1$.
+For $r=|z|>0$ put
+\[
+ u(w,z)=\log r+\varepsilon\varphi(w)K_0(\sqrt\lambda\,r),
+\]
+where $K_0$ is the decaying modified Bessel function. Its equation
+$K_0''(s)+s^{-1}K_0'(s)-K_0(s)=0$ makes $u$ harmonic for the product
+metric. Since $K_0'=-K_1$ and $sK_1(s)\le1$,
+\[
+ \partial_r u\ge \frac{1-\varepsilon\|\varphi\|_\infty}{r}>0.
+\]
+The asymptotics $K_0(s)=-\log s+O(1)$ at zero and $K_0(s)\to0$ at
+infinity show that $\{u=0\}$ is a smooth compact radial graph, bounding
+a compact neighborhood of $E\times\{0\}$, and that $u$ is positive and
+divergent on its exterior. Nevertheless the restriction of $\D u$
+to a compact $E$ fiber is
+$\varepsilon K_0(\sqrt\lambda r)\D_E\varphi\not\equiv0$.
+Thus $u$ is not pluriharmonic; being harmonic, it cannot be psh either.
+What remains necessary is a pluriharmonic Evans potential, or an Evans
+construction compatible with the complex current equation.
+\end{remark}
+
+% End separation-green
+
+
+\begin{corollary}\label{cor:regular-green-smoothing}
+Let $X$ be a connected noncompact K\"ahler surface with a continuous psh
+exhaustion. If $X$ admits a complete infinite-volume K\"ahler metric
+with uniformly bounded Riemannian curvature whose minimal positive
+Green kernel tends to zero at infinity, then $X$ admits a smooth psh
+exhaustion.
+\end{corollary}
+\begin{proof}
+If $X$ is a modification of a Stein space, pull back a smooth strictly
+psh exhaustion of that space. Otherwise Proposition~\ref{prop:averaging}
+supplies a nonzero compactly supported positive $\D$-closed current
+with zero Lelong numbers. Theorem~\ref{thm:green-separation} applies.
+\end{proof}
+
+The remaining general problem is to produce comparable end separation
+without the regular Green hypothesis, while also removing the curvature
+assumption from the singular-current argument. Neither an arbitrary
+choice of averaged currents, a formal noncompact $\partial\bar\partial$
+lemma, nor a homogeneous Monge--Amp\`ere equation supplies these steps.
+
+\begin{thebibliography}{99}
+\bibitem{DemaillyHodge}
+J.-P. Demailly, \emph{$L^2$ Hodge Theory and Vanishing Theorems}, in \emph{Introduction to Hodge Theory}, SMF/AMS Texts and Monographs \textbf{8} (2002), \S12, Hodge theory of complete K\"ahler manifolds.
+\href{https://www-fourier.univ-grenoble-alpes.fr/~demailly/manuscripts/hodge-ams.pdf}{Author-hosted text}.
+\bibitem{Demailly82}
+J.-P. Demailly, \emph{Estimations $L^2$ pour l'op\'erateur $\bar\partial$ d'un fibr\'e vectoriel holomorphe semi-positif au-dessus d'une vari\'et\'e k\"ahl\'erienne compl\`ete}, Ann. Sci. \'Ecole Norm. Sup. (4) \textbf{15} (1982), 457--511.
+\href{https://www.numdam.org/item/ASENS_1982_4_15_3_457_0/}{Authoritative scan}. Theorems 0.8, 1.3, 9.4.
+\bibitem{Dingoyan}
+P. Dingoyan, \emph{A factorisation theorem for curves with vanishing self-intersection}, arXiv:1405.3593.
+\href{https://arxiv.org/abs/1405.3593}{Preprint}, Lemma 3.1.1.
+\bibitem{DNS}
+T.-C. Dinh, V.-A. Nguy\^en, and N. Sibony, \emph{Unique ergodicity for foliations on compact K\"ahler surfaces}, Duke Math. J. \textbf{171} (2022), 2627--2698.
+\href{https://doi.org/10.1215/00127094-2022-0044}{DOI};
+\href{https://arxiv.org/pdf/1811.07450v2}{author version used for theorem numbering}.
+\bibitem{MS}
+S. Mongodi and Z. S{\l}odkowski, \emph{Domains with a continuous exhaustion in weakly complete surfaces}, Math. Z. \textbf{296} (2020), 1011--1019.
+\href{https://doi.org/10.1007/s00209-020-02466-z}{DOI};
+\href{https://arxiv.org/pdf/1904.03497}{preprint}.
+\bibitem{Vajaitu}
+V. V\^aj\^aitu, \emph{Holomorphic convexity of pseudoconvex surfaces}, Ann. Sc. Norm. Super. Pisa Cl. Sci. (5) \textbf{23} (2022), 1659--1678.
+\href{https://doi.org/10.2422/2036-2145.202011_018}{DOI}.
+\bibitem{NR}
+T. Napier and M. Ramachandran, \emph{The Bochner--Hartogs dichotomy for weakly $1$-complete K\"ahler manifolds}, Ann. Inst. Fourier \textbf{47} (1997), 1345--1365.
+\href{https://doi.org/10.5802/aif.1602}{DOI}.
+\bibitem{BM}
+F. Bianchi and S. Mongodi, \emph{On minimal kernels and Levi currents on weakly complete complex manifolds},
+\href{https://arxiv.org/pdf/2102.05328}{arXiv:2102.05328}.
+\bibitem{BDG}
+R. Baumgarth, B. Devyver, and B. G\"uneysu,
+\emph{Estimates for the covariant derivative of the heat semigroup on differential forms, and covariant Riesz transforms},
+Math. Ann. \textbf{386} (2023), 1753--1798.
+\href{https://doi.org/10.1007/s00208-022-02409-5}{DOI}.
+
+\bibitem{HL}
+F. R. Harvey and H. B. Lawson, Jr.,
+\emph{Duality of positive currents and plurisubharmonic functions in calibrated geometry},
+Amer. J. Math. \textbf{131} (2009), 1211--1239.
+\href{https://doi.org/10.1353/ajm.0.0074}{DOI};
+\href{https://www.math.stonybrook.edu/~blaine/phiPSH-Part2.pdf}{author version},
+Theorem~3.8 and Lemmas~3.10--3.11.
+\bibitem{HN}
+W. Hansen and I. Netuka, \emph{On the existence of Evans potentials},
+Math. Ann. \textbf{356} (2013), 1283--1302.
+\href{https://doi.org/10.1007/s00208-012-0873-2}{DOI}.
+\bibitem{NiTam}
+L. Ni and L.-F. Tam, \emph{Poincar\'e--Lelong equation via the
+Hodge--Laplace heat equation}, Compos. Math. \textbf{149} (2013), 1856--1870.
+\href{https://doi.org/10.1112/S0010437X12000322}{DOI};
+\href{https://mathweb.ucsd.edu/~lni/academic/PL-1109-v1.pdf}{author preprint}.
+\end{thebibliography}
+\end{document}
